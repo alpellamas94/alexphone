@@ -26,6 +26,7 @@ html {
     background-color: @color-bg;
     transform: translateY(-100%);
     transition: @transition1;
+    z-index: 5;
 
     &.show{
         transform: translateY(0%);
@@ -39,7 +40,7 @@ html {
 
         &:hover{
             span{
-                transform: scale(1.15);
+                transform: scale(1.2);
             }
         }
 
@@ -58,7 +59,7 @@ html {
             color: @color-white;
             height: fit-content;
             z-index: 1;
-            transition: 0.2s ease all;
+            transition: 0.1s ease transform;
 
             
             &::before{
@@ -78,5 +79,8 @@ html {
 }
 
 .mdl-hero{
-
+    position: relative;
+    width: 100vw;
+    height: 50rem;
+    background-color: aliceblue;
 }
