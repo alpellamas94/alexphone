@@ -11,6 +11,11 @@ html {
     }
 }
 
+body{
+    margin: 0;
+    padding: 0;
+}
+
 //? Módulos
 .mdl-header{
     position: fixed;
@@ -80,7 +85,48 @@ html {
 
 .mdl-hero{
     position: relative;
+    display: flex;
+    align-items: end;
+    justify-content: start;
+    box-sizing: border-box;
+    padding: 12rem 3rem 8rem;
     width: 100vw;
-    height: 50rem;
-    background-color: aliceblue;
+    min-height: 55rem;
+    user-select: none;
+
+    .m-content{
+        position: relative;
+        z-index: 2;
+        .m-title();
+        color: @color-white;
+    }
+
+    .swiper-container{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.64749649859944) 0%, rgba(0, 0, 0, 0.0060399159663865) 100%);
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .swiper-wrapper{
+            .swiper-slide{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
 }

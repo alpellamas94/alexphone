@@ -16,5 +16,16 @@ Home
         </a>
     </div>
 
-    <div class="mdl-hero"></div>
+    <div class="mdl-hero">
+        <div class="m-content">
+            Bienvenid@ a Alexphone
+        </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <img class="swiper-slide" src="https://picsum.photos/1920/700" alt="picsum1">
+                <img class="swiper-slide" src="https://picsum.photos/1920/800" alt="picsum2">
+                <img class="swiper-slide" src="https://picsum.photos/1920/900" alt="picsum3">
+            </div>
+        </div>
+    </div>
 @endsection
