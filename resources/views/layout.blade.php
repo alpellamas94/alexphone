@@ -13,8 +13,11 @@
     <script src="{{ asset('resources/js/scripts.js') }}"></script>
     <script src="{{ asset('resources/js/fancybox.min.js') }}"></script>
     <script src="{{ asset('resources/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('resources/js/mixitup.min.js') }}"></script>
 </head>
 <body>
+    @yield('navbar')
+    
     @yield('content')
 </body>
 </html>

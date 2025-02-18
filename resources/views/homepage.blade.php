@@ -4,21 +4,14 @@
 Home
 @endsection
 
+@section('navbar')
+    @include('navbar')
+@endsection
+
 @section('content')
-    <div class="mdl-header show">
-        <a href="https://www.alexphone.es/" target="_blank" class="m-logo">
-            <img src="{{ asset('resources/imgs/alexphone.svg') }}" alt="Logo alexphone">
-        </a>
-
-        <a href="#" target="_self" class="m-carrito">
-            <img src="{{ asset('resources/imgs/carrito.svg') }}" alt="Carrito">
-            <span>2</span>
-        </a>
-    </div>
-
     <div class="mdl-hero">
         <div class="m-content">
-            Bienvenid@ a Alexphone
+            Bienvenid@ a mi prueba técnica Alexphone
         </div>
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -28,4 +21,63 @@ Home
             </div>
         </div>
     </div>
+
+    @if (isset($elements) && !is_null($elements))
+        <div class="mdl-listado">
+            <div class="m-title">Listado de teléfonos disponibles:</div>
+    
+            <div class="m-content">
+                
+                <div class="m-filters">
+                    <select id="category-filter" class="m-filter">
+                        <option value="">Todos los estados</option>
+                        <option value=".excellent">excellent</option>
+                        <option value=".very_good">very_good</option>
+                        <option value=".good">good</option>
+                    </select>
+                    
+                    <select id="color-filter" class="m-filter">
+                        <option value="">Todos los colores</option>
+                        <option value=".white">white</option>
+                        <option value=".black">black</option>
+                        <option value=".red">red</option>
+                        <option value=".pink">pink</option>
+                    </select>
+    
+                    <button data-sort="default:asc">Ordenar A-Z</button>
+                    <button data-sort="default:desc">Ordenar Z-A</button>
+                </div>
+    
+                <div id="grid-elements" class="m-grid">
+                @foreach ($elements as $key => $item)
+                    <div class="m-item mix {{$item->grade}} {{$item->color}}">
+                        <div class="m-img" style="background-image: url('{{$item->image}}');"></div>
+                        <div class="m-info">
+                            <div class="m-title">{{$item->name}}</div>
+                            <div class="m-desc">{{$item->description}}</div>
+                            <div class="m-features">
+                                <div class="m-grade">
+                                    <span>{{$item->grade}} -&nbsp;</span>
+                                    <span>{{$item->grade}}</span>
+                                </div>
+                                <div class="m-colors">
+                                    <span class="m-color" style="background-color: {{$item->color}};"></span>
+                                </div>
+                                <span class="m-storage">{{$item->storage}}</span>
+                            </div>
+                            <div class="m-price">
+                                <span>Precio:</span>
+                                <strong>{{$item->price}}€</strong>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                </div>
+            </div>
+        </div>    
+    @else
+        <div class="mdl-listado error">
+            <div class="m-title">No hay teléfonos disponibles ahora mismo</div>
+        </div>
+    @endif
 @endsection
