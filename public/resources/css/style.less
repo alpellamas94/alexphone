@@ -156,10 +156,57 @@ body{
         width: 100%;
 
         .m-filters{
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
             margin: 6rem 0;
 
-            .m-filter{
+            
+            .m-select{
+                position: relative;
 
+                select {
+                    appearance: none;
+                    position: relative;
+                    .m-text2();
+                    font-weight: 600;
+                    color: @color-primary;
+                    padding: 1.5rem 5rem 1.5rem 1.5rem;
+                    background-color: transparent;
+                    border-width: thin;
+                    border-style: solid;
+                    border-color: rgba(0, 0, 0, 0.16);
+                    border-radius: 2rem;
+                    margin: 0.5rem 0;
+                    cursor: pointer;
+                    z-index: 2;
+                    transition: background-color 0.2s ease;
+
+                    &:focus-visible {
+                        outline: none;
+                    }
+
+                    @media (hover: hover){
+                        &:hover {
+                            background-color: #0050f914;
+                        }
+                    }
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    right: 2rem;
+                    width: 1rem;
+                    height: 1rem;
+                    transform: translateY(-50%);
+                    background-image: url('../icons/dropdown.svg');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    z-index: 1;
+                }
             }
         }
         
@@ -191,7 +238,7 @@ body{
     
                 .m-img{
                     width: 22rem;
-                    height: 18rem;
+                    height: 22rem;
                     justify-self: center;
                     background-position: center;
                     background-repeat: no-repeat;

@@ -11,7 +11,7 @@ Home
 @section('content')
     <div class="mdl-hero">
         <div class="m-content">
-            Bienvenid@ a mi prueba técnica Alexphone
+            Bienvenid@ a mi prueba técnica para Alexphone
         </div>
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -27,46 +27,64 @@ Home
             <div class="m-title">Listado de teléfonos disponibles:</div>
     
             <div class="m-content">
-                
                 <div class="m-filters">
-                    <select id="category-filter" class="m-filter">
-                        <option value="">Todos los estados</option>
-                        <option value=".excellent">excellent</option>
-                        <option value=".very_good">very_good</option>
-                        <option value=".good">good</option>
-                    </select>
+                    <div class="m-select">
+                        <select id="grade-filter">
+                            <option value="">Todos los estados</option>
+                            @foreach ($filters['grade'] as $g)
+                                <option value=".{{$g}}">{{config('grades.' . $g)}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     
-                    <select id="color-filter" class="m-filter">
-                        <option value="">Todos los colores</option>
-                        <option value=".white">white</option>
-                        <option value=".black">black</option>
-                        <option value=".red">red</option>
-                        <option value=".pink">pink</option>
-                    </select>
-    
-                    <button data-sort="default:asc">Ordenar A-Z</button>
-                    <button data-sort="default:desc">Ordenar Z-A</button>
+                    <div class="m-select">
+                        <select id="color-filter">
+                            <option value="">Todos los colores</option>
+                            @foreach ($filters['color'] as $c)
+                                <option value=".{{$c}}">{{config('colors.' . $c)}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="m-select">
+                        <select id="storage-filter">
+                            <option value="">Todos las capacidades</option>
+                            @foreach ($filters['storage'] as $s)
+                                <option value=".storage-{{$s}}">{{$s}} GB</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
     
                 <div id="grid-elements" class="m-grid">
                 @foreach ($elements as $key => $item)
-                    <div class="m-item mix {{$item->grade}} {{$item->color}}">
+                    <div class="m-item mix {{ implode(' ', $item->color) }} {{ implode(' ', $item->grade) }} {{ implode(' ', array_map(fn($s) => 'storage-' . $s, $item->storage)) }}">
                         <div class="m-img" style="background-image: url('{{$item->image}}');"></div>
                         <div class="m-info">
                             <div class="m-title">{{$item->name}}</div>
                             <div class="m-desc">{{$item->description}}</div>
                             <div class="m-features">
                                 <div class="m-grade">
-                                    <span>{{$item->grade}} -&nbsp;</span>
-                                    <span>{{$item->grade}}</span>
+                                    @foreach ($item->grade as $grade)
+                                    <span>{{config('grades.' . $grade)}}</span>@if (!$loop->last) - @endif
+                                    @endforeach
                                 </div>
+
                                 <div class="m-colors">
-                                    <span class="m-color" style="background-color: {{$item->color}};"></span>
+                                    @foreach ($item->color as $color)
+                                        <span class="m-color" style="background-color: {{$color}};"></span>
+                                    @endforeach
                                 </div>
-                                <span class="m-storage">{{$item->storage}}</span>
+
+                                <span class="m-storage">
+                                    @foreach ($item->storage as $storage)
+                                    <span>{{$storage}} GB</span>@if (!$loop->last) - @endif
+                                    @endforeach
+                                </span>
+                                
                             </div>
                             <div class="m-price">
-                                <span>Precio:</span>
+                                <span>Desde:</span>
                                 <strong>{{$item->price}}€</strong>
                             </div>
                         </div>
@@ -77,7 +95,7 @@ Home
         </div>    
     @else
         <div class="mdl-listado error">
-            <div class="m-title">No hay teléfonos disponibles ahora mismo</div>
+            <div class="m-title">No se han encontrado elementos disponibles.</div>
         </div>
     @endif
 @endsection

@@ -205,7 +205,62 @@ body {
   width: 100%;
 }
 .mdl-listado .m-content .m-filters {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
   margin: 6rem 0;
+}
+.mdl-listado .m-content .m-filters .m-select {
+  position: relative;
+}
+.mdl-listado .m-content .m-filters .m-select select {
+  appearance: none;
+  position: relative;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  font-weight: 400;
+  font-weight: 600;
+  color: #000000;
+  padding: 1.5rem 5rem 1.5rem 1.5rem;
+  background-color: transparent;
+  border-width: thin;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.16);
+  border-radius: 2rem;
+  margin: 0.5rem 0;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.2s ease;
+}
+@media (max-width: 850px) {
+  .mdl-listado .m-content .m-filters .m-select select {
+    font-size: 1.4rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+  }
+}
+.mdl-listado .m-content .m-filters .m-select select:focus-visible {
+  outline: none;
+}
+@media (hover: hover) {
+  .mdl-listado .m-content .m-filters .m-select select:hover {
+    background-color: #0050f914;
+  }
+}
+.mdl-listado .m-content .m-filters .m-select::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  width: 1rem;
+  height: 1rem;
+  transform: translateY(-50%);
+  background-image: url('../icons/dropdown.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
 }
 .mdl-listado .m-content .m-grid {
   width: 100%;
@@ -234,7 +289,7 @@ body {
 }
 .mdl-listado .m-content .m-grid .m-item .m-img {
   width: 22rem;
-  height: 18rem;
+  height: 22rem;
   justify-self: center;
   background-position: center;
   background-repeat: no-repeat;

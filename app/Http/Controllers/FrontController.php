@@ -11,15 +11,19 @@ class FrontController extends Controller
         
         $phoneController = new PhoneController();
         
-        // Recuperamos los elementos
-        $allElements = $phoneController->getAll();
-        $elements = $phoneController->unifyData($allElements);
+        // Recuperamos los elementos pasandole true en el primer parámetro para que devuelva los elementos unificados
+        $elements = $phoneController->getAll(true);
 
+        // Sacamos los filtros en base a los elementos
+        $filters = $phoneController->getFilters($elements);
+
+        // AÑadimos el título de la página
         $title = 'Homepage';
 
         return view('homepage', [
 			'title' => $title,
 			'elements' => $elements,
+			'filters' => $filters,
 		]);
     }
 }
