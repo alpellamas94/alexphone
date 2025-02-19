@@ -33,6 +33,13 @@ body{
     overflow-x: hidden;
 }
 
+.m-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 //? Módulos
 .mdl-header{
     position: fixed;
@@ -287,7 +294,7 @@ body{
                             flex-direction: row;
                             flex-wrap: wrap;
                             gap: 1rem;
-                            margin-bottom: 1.5rem;
+                            margin-top: 1.5rem;
     
                             .m-color{
                                 width: 2rem;
@@ -308,6 +315,7 @@ body{
                             flex-direction: row;
                             flex-wrap: wrap;
                             gap: 0.5rem;
+                            height: fit-content;
                             .m-text2();
                             color: @color-primary;
 

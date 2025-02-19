@@ -81,6 +81,12 @@ body {
 [class^="mdl-"] {
   overflow-x: hidden;
 }
+.m-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 .mdl-header {
   position: fixed;
   top: 0;
@@ -350,7 +356,7 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
 }
 .mdl-listado .m-content .m-grid .m-item .m-info .m-features .m-colors .m-color {
   width: 2rem;
@@ -369,6 +375,7 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0.5rem;
+  height: fit-content;
   font-family: "Manrope", sans-serif;
   font-size: 1.6rem;
   line-height: 2rem;

@@ -29,7 +29,7 @@ Home
             <div class="m-content">
                 <div class="m-filters">
                     <div class="m-select">
-                        <select id="grade-filter">
+                        <select id="name-filter">
                             <option value="">Todos los modelos</option>
                             @foreach ($filters['name'] as $n)
                                 <option value=".{{ Str::slug($n) }}">{{$n}}</option>
@@ -67,24 +67,25 @@ Home
     
                 <div id="grid-elements" class="m-grid">
                 @foreach ($elements as $key => $item)
-                    <div class="m-item mix {{ $item->color }} {{ $item->grade }} storage-{{ $item->storage }}">
+                    <div class="m-item mix {{ Str::slug($item->name) }} {{ $item->color }} {{ $item->grade }} storage-{{ $item->storage }}">
                         <div class="m-img" style="background-image: url('{{$item->image}}');"></div>
                         <div class="m-info">
                             <div class="m-title">{{$item->name}}</div>
                             <div class="m-desc">{{$item->description}}</div>
                             <div class="m-features">
+                                <div class="m-row">
+                                    <div class="m-grade">
+                                        <span>{{config('grades.' . $item->grade)}}</span>
+                                    </div>
+    
+                                    <span class="m-storage">
+                                        <span>{{$item->storage}} GB</span>
+                                    </span>
+                                </div>
+
                                 <div class="m-colors">
                                     <span class="m-color" style="background-color: {{$item->color}};"></span>
                                 </div>
-
-                                <div class="m-grade">
-                                    <span>{{config('grades.' . $item->grade)}}</span>
-                                </div>
-
-                                <span class="m-storage">
-                                    <span>{{$item->storage}} GB</span>
-                                </span>
-                                
                             </div>
                             <div class="m-price">
                                 <span>Desde:</span>

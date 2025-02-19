@@ -45,6 +45,12 @@ class PhoneController extends Controller
         $filters['storage'] = array_unique($filters['storage']);
         $filters['grade'] = array_unique($filters['grade']);
     
+        // Ordenamos alfabeticamente
+        sort($filters['name']);
+        sort($filters['color']);
+        sort($filters['storage']);
+        sort($filters['grade']);
+    
         return $filters;
     }
     
