@@ -45,12 +45,12 @@ $(function () {
         
             mixer.filter(filterString);
 
-            // Remove the first character from each value
+            // Elimina el primer caracter del string "."
             if (grade) grade = grade.substring(1);
             if (color) color = color.substring(1);
             if (storage) storage = storage.substring(1);
 
-            // Update URL parameters
+            // Actualizamos la URL con los parámetros de los filtros
             let url = new URL(window.location);
             if (grade) {
                 url.searchParams.set('grade', grade);
@@ -70,7 +70,7 @@ $(function () {
             window.history.replaceState({}, '', url);
         }
 
-        // Set initial filters based on URL parameters
+        // Setea los filtros en base a los parámetros de la URL
         function setInitialFilters() {
             let urlParams = new URLSearchParams(window.location.search);
             let grade = urlParams.get('grade');

@@ -64,21 +64,21 @@ Home
                             <div class="m-title">{{$item->name}}</div>
                             <div class="m-desc">{{$item->description}}</div>
                             <div class="m-features">
-                                <div class="m-grade">
-                                    @foreach ($item->grade as $grade)
-                                    <span>{{config('grades.' . $grade)}}</span>@if (!$loop->last) - @endif
-                                    @endforeach
-                                </div>
-
                                 <div class="m-colors">
                                     @foreach ($item->color as $color)
                                         <span class="m-color" style="background-color: {{$color}};"></span>
                                     @endforeach
                                 </div>
 
+                                <div class="m-grade">
+                                    @foreach ($item->grade as $grade)
+                                    <span>{{config('grades.' . $grade)}}</span>
+                                    @endforeach
+                                </div>
+
                                 <span class="m-storage">
                                     @foreach ($item->storage as $storage)
-                                    <span>{{$storage}} GB</span>@if (!$loop->last) - @endif
+                                    <span>{{$storage}} GB</span>
                                     @endforeach
                                 </span>
                                 
