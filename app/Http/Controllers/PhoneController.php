@@ -52,6 +52,11 @@ class PhoneController extends Controller
                     $unifiedElements[$phone->name]->grade = array_merge($unifiedElements[$phone->name]->grade, [$phone->grade]);
                 }
 
+                // Mantenemos el precio más bajo
+                if ($phone->price < $unifiedElements[$phone->name]->price) {
+                    $unifiedElements[$phone->name]->price = $phone->price;
+                }
+
             } else {
                 // Si no existe el grupo, lo creamos con los colores, storage y grade como arrays
                 $phone->color = [$phone->color];
