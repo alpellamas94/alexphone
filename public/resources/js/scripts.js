@@ -103,12 +103,43 @@ $(function () {
             updateFilters();
         }
 
-        setInitialFilters();
+        // Controla si se mostrará el botón para resetear los filtros
+        function toggleResetVisibility() {
+            let name = $nameFilter.val();
+            let grade = $gradeFilter.val();
+            let color = $colorFilter.val();
+            let storage = $storageFilter.val();
+        
+            if (name || grade || color || storage) {
+                $("#reset-filter").addClass('active');
+            } else {
+                $("#reset-filter").removeClass('active');
+            }
+        }
     
-        // Event Listeners para actualizar filtros
-        $nameFilter.on("change", updateFilters);
-        $gradeFilter.on("change", updateFilters);
-        $colorFilter.on("change", updateFilters);
-        $storageFilter.on("change", updateFilters);
+        // Actualizar filtros y visibilidad del reset
+        function handleFilterChange() {
+            updateFilters();
+            toggleResetVisibility();
+        }
+
+        $nameFilter.on("change", handleFilterChange);
+        $gradeFilter.on("change", handleFilterChange);
+        $colorFilter.on("change", handleFilterChange);
+        $storageFilter.on("change", handleFilterChange);
+
+        // Resetear filtros al hacer clic en el botón de reset
+        $("#reset-filter").on("click", function() {
+            $nameFilter.val("").trigger("change");
+            $gradeFilter.val("").trigger("change");
+            $colorFilter.val("").trigger("change");
+            $storageFilter.val("").trigger("change");
+            updateFilters();
+            toggleResetVisibility();
+        });
+        
+        // Inicializamos filtros al cargar la página
+        setInitialFilters();
+        toggleResetVisibility();
     }
 });

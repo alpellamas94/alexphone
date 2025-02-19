@@ -63,6 +63,10 @@ Home
                             @endforeach
                         </select>
                     </div>
+
+                    <button id="reset-filter" class="m-reset">
+                        <img src="{{ asset('resources/icons/close.svg') }}" alt="Close">
+                    </button>
                 </div>
     
                 <div id="grid-elements" class="m-grid">
@@ -72,19 +76,17 @@ Home
                         <div class="m-info">
                             <div class="m-title">{{$item->name}}</div>
                             <div class="m-desc">{{$item->description}}</div>
-                            <div class="m-features">
-                                <div class="m-row">
-                                    <div class="m-grade">
-                                        <span>{{config('grades.' . $item->grade)}}</span>
-                                    </div>
-    
-                                    <span class="m-storage">
-                                        <span>{{$item->storage}} GB</span>
-                                    </span>
+                            <div class="m-features m-row">
+                                <div class="m-colors">
+                                    <span class="m-color {{$item->color}}" style="background-color: {{$item->color}};">{{config('colors.' . $item->color)}}</span>
                                 </div>
 
-                                <div class="m-colors">
-                                    <span class="m-color" style="background-color: {{$item->color}};"></span>
+                                <div class="m-storage">
+                                    <span>{{$item->storage}} GB</span>
+                                </div>
+
+                                <div class="m-grade">
+                                    <span>{{config('grades.' . $item->grade)}}</span>
                                 </div>
                             </div>
                             <div class="m-price">

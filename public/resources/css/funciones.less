@@ -23,6 +23,18 @@
   background-repeat: no-repeat;
 }
 
+// Shadows
+.box-shadows(){
+  box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease;
+
+  @media (hover: hover){
+      &:hover{
+          box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.15), 0 1.3rem 2rem rgba(0, 0, 0, 0.1);
+      }
+  }
+}
+
 //? Fonts
 .m-title1() {
   font-family: @font;
