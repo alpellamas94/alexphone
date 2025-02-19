@@ -192,15 +192,16 @@ body{
                     margin: 0.5rem 0;
                     cursor: pointer;
                     z-index: 2;
-                    transition: background-color 0.2s ease;
+                    transition: box-shadow 0.2s ease;
+                    box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.06);
 
                     &:focus-visible {
                         outline: none;
                     }
-
+    
                     @media (hover: hover){
-                        &:hover {
-                            background-color: #DEE7FD;
+                        &:hover{
+                            box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.15), 0 1.3rem 2rem rgba(0, 0, 0, 0.1);
                         }
                     }
                 }
@@ -314,7 +315,7 @@ body{
                                 box-sizing: border-box;
                                 padding: 0.5rem 1rem;
                                 border-radius: 1rem;
-                                background-color: #2A63D5;
+                                background-color: @color-blue;
                                 color: @color-white;
                             }
                         }

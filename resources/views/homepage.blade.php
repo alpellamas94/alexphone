@@ -58,28 +58,22 @@ Home
     
                 <div id="grid-elements" class="m-grid">
                 @foreach ($elements as $key => $item)
-                    <div class="m-item mix {{ implode(' ', $item->color) }} {{ implode(' ', $item->grade) }} {{ implode(' ', array_map(fn($s) => 'storage-' . $s, $item->storage)) }}">
+                    <div class="m-item mix {{ $item->color }} {{ $item->grade }} storage-{{ $item->storage }}">
                         <div class="m-img" style="background-image: url('{{$item->image}}');"></div>
                         <div class="m-info">
                             <div class="m-title">{{$item->name}}</div>
                             <div class="m-desc">{{$item->description}}</div>
                             <div class="m-features">
                                 <div class="m-colors">
-                                    @foreach ($item->color as $color)
-                                        <span class="m-color" style="background-color: {{$color}};"></span>
-                                    @endforeach
+                                    <span class="m-color" style="background-color: {{$item->color}};"></span>
                                 </div>
 
                                 <div class="m-grade">
-                                    @foreach ($item->grade as $grade)
-                                    <span>{{config('grades.' . $grade)}}</span>
-                                    @endforeach
+                                    <span>{{config('grades.' . $item->grade)}}</span>
                                 </div>
 
                                 <span class="m-storage">
-                                    @foreach ($item->storage as $storage)
-                                    <span>{{$storage}} GB</span>
-                                    @endforeach
+                                    <span>{{$item->storage}} GB</span>
                                 </span>
                                 
                             </div>

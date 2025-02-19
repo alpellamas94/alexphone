@@ -241,7 +241,8 @@ body {
   margin: 0.5rem 0;
   cursor: pointer;
   z-index: 2;
-  transition: background-color 0.2s ease;
+  transition: box-shadow 0.2s ease;
+  box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.06);
 }
 @media (max-width: 850px) {
   .mdl-listado .m-content .m-filters .m-select select {
@@ -255,7 +256,7 @@ body {
 }
 @media (hover: hover) {
   .mdl-listado .m-content .m-filters .m-select select:hover {
-    background-color: #DEE7FD;
+    box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.15), 0 1.3rem 2rem rgba(0, 0, 0, 0.1);
   }
 }
 .mdl-listado .m-content .m-filters .m-select::after {
@@ -387,7 +388,7 @@ body {
   box-sizing: border-box;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
-  background-color: #2A63D5;
+  background-color: #2A3D65;
   color: #FFFF;
 }
 .mdl-listado .m-content .m-grid .m-item .m-info .m-price {

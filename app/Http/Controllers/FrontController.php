@@ -12,7 +12,7 @@ class FrontController extends Controller
         $phoneController = new PhoneController();
         
         // Recuperamos los elementos pasándole true en el primer parámetro para que devuelva los elementos unificados
-        $elements = $phoneController->getAll(true);
+        $elements = $phoneController->getAll();
 
         // Sacamos los filtros en base a los elementos
         $filters = $phoneController->getFilters($elements);

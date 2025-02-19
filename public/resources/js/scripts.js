@@ -1,7 +1,7 @@
 $(function () {
 
     // Inicializamos el slider del hero
-    if($('.mdl-hero').length > 1){
+    if($('.mdl-hero .swiper-slide').length > 1){
         const swiperHero = new Swiper('.mdl-hero .swiper-container', {
             slidesPerView: "auto",
             slidesPerGroup: 1,
