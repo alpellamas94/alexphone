@@ -30,6 +30,15 @@ Home
                 <div class="m-filters">
                     <div class="m-select">
                         <select id="grade-filter">
+                            <option value="">Todos los modelos</option>
+                            @foreach ($filters['name'] as $n)
+                                <option value=".{{ Str::slug($n) }}">{{$n}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="m-select">
+                        <select id="grade-filter">
                             <option value="">Todos los estados</option>
                             @foreach ($filters['grade'] as $g)
                                 <option value=".{{$g}}">{{config('grades.' . $g)}}</option>
