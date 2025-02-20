@@ -142,4 +142,25 @@ $(function () {
         setInitialFilters();
         toggleResetVisibility();
     }
+
+    /* if($('.mdl-detail').length > 1){
+        $("#m-add").click(function() {
+            var productoId = $(this).data("producto-id");
+
+            $.ajax({
+                url: "{{ route('carrito.agregar') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    producto_id: productoId
+                },
+                success: function(response) {
+                    alert(response.mensaje);
+                },
+                error: function() {
+                    alert("Error al añadir al carrito");
+                }
+            });
+        });
+    } */
 });

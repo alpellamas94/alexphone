@@ -42,7 +42,7 @@
                 <span>{{$element->price}}€</span>
             </div>
 
-            {{-- <button class="m-add">Añadir al carrito</button> --}}
+            {{-- <button id="m-add">Añadir al carrito</button> --}}
         </div>
     </div>
 @endsection
