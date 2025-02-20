@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title_page')
-Home
+{{$title_page}}
 @endsection
 
 @section('navbar')
@@ -71,7 +71,7 @@ Home
     
                 <div id="grid-elements" class="m-grid">
                 @foreach ($elements as $key => $item)
-                    <div class="m-item mix {{ Str::slug($item->name) }} {{ $item->color }} {{ $item->grade }} storage-{{ $item->storage }}">
+                    <a href="{{ route('product.detail', ['sku' => $item->sku]) }}" class="m-item mix {{ Str::slug($item->name) }} {{ $item->color }} {{ $item->grade }} storage-{{ $item->storage }}">
                         <div class="m-img" style="background-image: url('{{$item->image}}');"></div>
                         <div class="m-info">
                             <div class="m-title">{{$item->name}}</div>
@@ -90,11 +90,11 @@ Home
                                 </div>
                             </div>
                             <div class="m-price">
-                                <span>Desde:</span>
+                                <span>Precio:</span>
                                 <strong>{{$item->price}}€</strong>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
                 </div>
             </div>
