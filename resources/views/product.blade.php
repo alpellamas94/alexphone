@@ -39,7 +39,7 @@
 
             <div class="m-price m-row">
                 <strong>Precio: </strong>
-                <span>{{$element->price}}€</span>
+                <span>{{number_format($element->price, 0) }}€</span>
             </div>
 
             <button id="m-add" data-sku="{{$element->sku}}" data-url="{{ route('cart.add') }}" data-token="{{ csrf_token() }}">

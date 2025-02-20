@@ -25,7 +25,7 @@
 
     @if (isset($elements) && !is_null($elements))
         <div class="mdl-listado">
-            <div class="m-title">Listado de teléfonos disponibles:</div>
+            <div class="m-title">Listado de iPhones disponibles</div>
     
             <div class="m-content">
                 <div class="m-filters">
@@ -92,7 +92,7 @@
                             </div>
                             <div class="m-price">
                                 <span>Precio:</span>
-                                <strong>{{$item->price}}€</strong>
+                                <strong>{{ number_format($item->price, 0) }}€</strong>
                             </div>
                         </div>
                     </a>
