@@ -15,9 +15,10 @@
         </div>
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <img class="swiper-slide" src="https://picsum.photos/1920/700" alt="picsum1">
-                <img class="swiper-slide" src="https://picsum.photos/1920/800" alt="picsum2">
-                <img class="swiper-slide" src="https://picsum.photos/1920/900" alt="picsum3">
+                <div class="swiper-slide" style="background-image: url('{{ asset('resources/imgs/slide1.jpg') }}')"></div>
+                <div class="swiper-slide" style="background-image: url('{{ asset('resources/imgs/slide2.jpg') }}')"></div>
+                <div class="swiper-slide" style="background-image: url('{{ asset('resources/imgs/slide3.jpg') }}')"></div>
+                <div class="swiper-slide" style="background-image: url('{{ asset('resources/imgs/slide4.jpg') }}')"></div>
             </div>
         </div>
     </div>

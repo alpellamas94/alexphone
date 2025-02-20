@@ -197,7 +197,9 @@ body {
 .mdl-hero .swiper-container .swiper-wrapper .swiper-slide {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 22%;
 }
 .mdl-listado {
   max-width: 127rem;
@@ -602,7 +604,7 @@ body {
   gap: 1rem;
   width: fit-content;
   box-sizing: border-box;
-  padding: 1.5rem;
+  padding: 1.7rem;
   margin-top: 2rem;
   font-family: "Manrope", sans-serif;
   font-size: 1.8rem;
@@ -612,6 +614,7 @@ body {
   background-color: #2A3D65;
   transition: 0.3s ease;
   border-radius: 1rem;
+  border: unset;
   cursor: pointer;
 }
 @media (max-width: 850px) {
@@ -629,4 +632,39 @@ body {
 .mdl-product .m-section #m-add img {
   width: 2.4rem;
   filter: brightness(0) invert(1);
+}
+#message-cart {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 50rem;
+  box-sizing: border-box;
+  padding: 2.5rem 3rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  font-weight: 400;
+  text-align: center;
+  color: #FFFF;
+  border-radius: 2rem;
+  transition: 0.7s ease all;
+  opacity: 0;
+}
+@media (max-width: 850px) {
+  #message-cart {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 400;
+  }
+}
+#message-cart.active {
+  opacity: 1;
+  bottom: 10rem;
+}
+#message-cart.success {
+  background-color: green;
+}
+#message-cart.error {
+  background-color: red;
 }
