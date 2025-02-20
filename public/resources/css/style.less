@@ -27,10 +27,7 @@ body{
     margin: 0;
     padding: 0;
     background-color: rgb(245 245 247 / 1);
-}
-
-[class^="mdl-"] {
-    overflow-x: hidden;
+    margin-top: 7.8rem;
 }
 
 .m-row{
@@ -38,6 +35,16 @@ body{
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1rem;
+}
+
+.m-col{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    > *{
+        width: fit-content;
+    }
 }
 
 //? Módulos
@@ -262,6 +269,7 @@ body{
                 border-radius: 2rem;
                 background-color: @color-white;
                 cursor: pointer;
+                text-decoration: unset;
                 .box-shadows();
     
                 .m-img{
@@ -342,6 +350,75 @@ body{
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+.mdl-detail{
+    max-width: 100rem;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 8rem 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5rem;
+
+    .m-img {
+        max-width: ~"calc(50% - 2.5rem)";
+        width: 100%;
+        height: fit-content;
+        .box-shadows();
+        border-radius: 2rem;
+        background-color: @color-white;
+        overflow: hidden;
+        
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .m-section {
+        max-width: ~"calc(50% - 2.5rem)";
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .m-title {
+            .m-title5();
+            font-weight: 500;
+            color: @color-blue;
+        }
+
+        .m-color {
+            span {
+                box-sizing: border-box;
+                padding: 0.5rem 1rem;
+                border-radius: 1rem;
+                border-width: thin;
+                border-style: solid;
+                border-color: rgba(0, 0, 0, 0.16);
+                .m-text2();
+                color: @color-white;
+
+                &.white {
+                    color: @color-primary;
+                }
+            }
+        }
+
+        .m-desc,.m-color,.m-storage,.m-grade,.m-price{
+            .m-text2();
+            color: @color-primary;
+
+            strong{
+                .m-text1();
+                font-weight: 600;
+                color: @color-blue;
             }
         }
     }

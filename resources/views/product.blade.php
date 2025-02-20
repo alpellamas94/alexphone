@@ -10,32 +10,39 @@
 
 @section('content')
     <div class="mdl-detail">
-        <div class="m-img" style="background-image: url('{{$element->image}}');"></div>
+        <div class="m-img">
+            <img src="{{$element->image}}" alt="{{$element->sku}}">
+        </div>
 
         <div class="m-section">
-            <div class="m-top">
-                <div class="m-title">{{$element->name}}</div>
-
-                <div class="m-price">
-                    <strong>{{$item->price}}€</strong>
-                </div>
-            </div>
+            <div class="m-title">{{$element->name}}</div>
             
-            <div class="m-desc">{{$element->description}}</div>
-            
-            <div class="m-features m-row">
-                <div class="m-colors">
-                    <span class="m-color {{$item->color}}" style="background-color: {{$item->color}};">{{config('colors.' . $item->color)}}</span>
-                </div>
-
-                <div class="m-storage">
-                    <span>{{$item->storage}} GB</span>
-                </div>
-
-                <div class="m-grade">
-                    <span>{{config('grades.' . $item->grade)}}</span>
-                </div>
+            <div class="m-desc m-col">
+                <strong>Descripción</strong>
+                <span>{{$element->description}}</span>
             </div>
+
+            <div class="m-grade m-col">
+                <strong>Estado</strong>
+                <span>{{config('grades.' . $element->grade)}}</span>
+            </div>
+
+            <div class="m-storage m-col">
+                <strong>Capacidad</strong>
+                <span>{{$element->storage}} GB</span>
+            </div>
+
+            <div class="m-color m-col">
+                <strong>Color</strong>
+                <span style="background-color: {{$element->color}};">{{config('colors.' . $element->color)}}</span>
+            </div>
+
+            <div class="m-price m-col">
+                <strong>Precio</strong>
+                <span>{{$element->price}}€</span>
+            </div>
+
+            {{-- <button class="m-add">Añadir al carrito</button> --}}
         </div>
     </div>
 @endsection

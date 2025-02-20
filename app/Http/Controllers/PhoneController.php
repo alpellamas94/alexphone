@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Http;
 class PhoneController extends Controller
 {
     public function getAll(){
-        
-        // Pedimos los datos sin verificar SSL
+        // Pedimos los datos
         $response = Http::withoutVerifying()->get('https://test.alexphone.com/api/v1/skus');
 
         // Verificamos si la respuesta fue exitosa
@@ -19,6 +18,22 @@ class PhoneController extends Controller
             $objectPhones = json_decode($response->body());
             
             return $objectPhones;
+        } else {
+            return null;
+        }
+    }
+
+    public function getBySku($sku = null){
+        // Pedimos los datos del producto
+        $response = Http::withoutVerifying()->get('https://test.alexphone.com/api/v1/sku/'.$sku);
+
+        // Verificamos si la respuesta fue exitosa
+        if ($response->successful()) {
+
+            // Convertimos la respuesta en un objeto
+            $objectPhone = json_decode($response->body());
+            
+            return $objectPhone;
         } else {
             return null;
         }

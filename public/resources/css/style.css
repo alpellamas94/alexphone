@@ -77,15 +77,21 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f5f5f7;
-}
-[class^="mdl-"] {
-  overflow-x: hidden;
+  margin-top: 7.8rem;
 }
 .m-row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
+}
+.m-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.m-col > * {
+  width: fit-content;
 }
 .mdl-header {
   position: fixed;
@@ -322,6 +328,7 @@ body {
   border-radius: 2rem;
   background-color: #FFFF;
   cursor: pointer;
+  text-decoration: unset;
   box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.2s ease;
 }
@@ -448,5 +455,123 @@ body {
   .mdl-listado .m-content .m-grid .m-item .m-info .m-price strong {
     font-size: 2.2rem;
     line-height: 2.3rem;
+  }
+}
+.mdl-detail {
+  max-width: 100rem;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 8rem 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5rem;
+}
+.mdl-detail .m-img {
+  max-width: calc(50% - 2.5rem);
+  width: 100%;
+  height: fit-content;
+  box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease;
+  border-radius: 2rem;
+  background-color: #FFFF;
+  overflow: hidden;
+}
+@media (hover: hover) {
+  .mdl-detail .m-img:hover {
+    box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.15), 0 1.3rem 2rem rgba(0, 0, 0, 0.1);
+  }
+}
+.mdl-detail .m-img img {
+  width: 100%;
+  height: auto;
+}
+.mdl-detail .m-section {
+  max-width: calc(50% - 2.5rem);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.mdl-detail .m-section .m-title {
+  font-family: "Manrope", sans-serif;
+  font-size: 2.8rem;
+  line-height: 3.2rem;
+  font-weight: 500;
+  color: #2A3D65;
+}
+@media (max-width: 850px) {
+  .mdl-detail .m-section .m-title {
+    font-size: 2.2rem;
+    line-height: 2.3rem;
+  }
+}
+.mdl-detail .m-section .m-color span {
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  border-width: thin;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.16);
+  font-family: "Manrope", sans-serif;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  font-weight: 400;
+  color: #FFFF;
+}
+@media (max-width: 850px) {
+  .mdl-detail .m-section .m-color span {
+    font-size: 1.4rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+  }
+}
+.mdl-detail .m-section .m-color span.white {
+  color: #000000;
+}
+.mdl-detail .m-section .m-desc,
+.mdl-detail .m-section .m-color,
+.mdl-detail .m-section .m-storage,
+.mdl-detail .m-section .m-grade,
+.mdl-detail .m-section .m-price {
+  font-family: "Manrope", sans-serif;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  font-weight: 400;
+  color: #000000;
+}
+@media (max-width: 850px) {
+  .mdl-detail .m-section .m-desc,
+  .mdl-detail .m-section .m-color,
+  .mdl-detail .m-section .m-storage,
+  .mdl-detail .m-section .m-grade,
+  .mdl-detail .m-section .m-price {
+    font-size: 1.4rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+  }
+}
+.mdl-detail .m-section .m-desc strong,
+.mdl-detail .m-section .m-color strong,
+.mdl-detail .m-section .m-storage strong,
+.mdl-detail .m-section .m-grade strong,
+.mdl-detail .m-section .m-price strong {
+  font-family: "Manrope", sans-serif;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  font-weight: 400;
+  font-weight: 600;
+  color: #2A3D65;
+}
+@media (max-width: 850px) {
+  .mdl-detail .m-section .m-desc strong,
+  .mdl-detail .m-section .m-color strong,
+  .mdl-detail .m-section .m-storage strong,
+  .mdl-detail .m-section .m-grade strong,
+  .mdl-detail .m-section .m-price strong {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 400;
   }
 }

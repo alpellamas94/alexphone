@@ -77,17 +77,17 @@
                             <div class="m-title">{{$item->name}}</div>
                             <div class="m-desc">{{$item->description}}</div>
                             <div class="m-features m-row">
-                                <div class="m-colors">
-                                    <span class="m-color {{$item->color}}" style="background-color: {{$item->color}};">{{config('colors.' . $item->color)}}</span>
+                                <div class="m-grade">
+                                    <span>{{config('grades.' . $item->grade)}}</span>
                                 </div>
-
+                                
                                 <div class="m-storage">
                                     <span>{{$item->storage}} GB</span>
                                 </div>
 
-                                <div class="m-grade">
-                                    <span>{{config('grades.' . $item->grade)}}</span>
-                                </div>
+                                <div class="m-colors">
+                                    <span class="m-color {{$item->color}}" style="background-color: {{$item->color}};">{{config('colors.' . $item->color)}}</span>
+                                </div> 
                             </div>
                             <div class="m-price">
                                 <span>Precio:</span>
