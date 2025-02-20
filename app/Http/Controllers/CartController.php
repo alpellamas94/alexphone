@@ -25,7 +25,7 @@ class CartController extends Controller
         session()->put('cart', $cart);
 
         return response()->json([
-            'mensaje' => 'Sku añadido al cart',
+            'mensaje' => 'El producto ha sido añadido al carrito exitosamente.',
             'cart' => $cart
         ]);
     }

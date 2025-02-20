@@ -650,6 +650,8 @@ body {
   border-radius: 2rem;
   transition: 0.7s ease all;
   opacity: 0;
+  pointer-events: none;
+  user-select: none;
 }
 @media (max-width: 850px) {
   #message-cart {

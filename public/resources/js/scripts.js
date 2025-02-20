@@ -6,7 +6,7 @@ $(function () {
             slidesPerGroup: 1,
             spaceBetween: 0,
             loop: true,
-            speed: 1500,
+            speed: 1200,
             autoplay: {
                 delay: 5000,
                 disableOnInteraction: true,
@@ -146,6 +146,7 @@ $(function () {
         Fancybox.bind("[data-fancybox]", {});
 
         $("#m-add").click(function() {
+            $("#message-cart").html();
             var sku = $(this).data("sku");
             var url = $(this).data("url");
             var token = $(this).data("token");
@@ -158,12 +159,24 @@ $(function () {
                     sku: sku
                 },
                 success: function(response) {
-                    alert(response.mensaje);
+                    $("#message-cart").html(response.mensaje)
+                        .removeClass("error")
+                        .addClass("success active");
+                    
+                    setTimeout(() => {
+                        $("#message-cart").removeClass("active");
+                    }, 2000);
 
                     $("#m-cart").load(window.location.href + " #m-cart > *");
                 },
                 error: function() {
-                    alert("Error al añadir elemento al carrito");
+                    $("#message-cart").html("No se pudo añadir el producto al carrito.")
+                        .removeClass("success")
+                        .addClass("error active");
+                    
+                    setTimeout(() => {
+                        $("#message-cart").removeClass("active");
+                    }, 2000);
                 }
             });
         });

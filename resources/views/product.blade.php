@@ -48,4 +48,6 @@
             </button>
         </div>
     </div>
+
+    <div id="message-cart">El producto ha sido añadido al carrito exitosamente.</div>
 @endsection
