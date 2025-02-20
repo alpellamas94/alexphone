@@ -1,5 +1,4 @@
 $(function () {
-
     // Inicializamos el slider del hero
     if($('.mdl-hero .swiper-slide').length > 1){
         const swiperHero = new Swiper('.mdl-hero .swiper-container', {
@@ -143,24 +142,28 @@ $(function () {
         toggleResetVisibility();
     }
 
-    /* if($('.mdl-detail').length > 1){
+    if($('.mdl-detail').length > 0){
         $("#m-add").click(function() {
-            var productoId = $(this).data("producto-id");
+            var sku = $(this).data("sku");
+            var url = $(this).data("url");
+            var token = $(this).data("token");
 
             $.ajax({
-                url: "{{ route('carrito.agregar') }}",
+                url: url,
                 type: "POST",
                 data: {
-                    _token: "{{ csrf_token() }}",
-                    producto_id: productoId
+                    _token: token,
+                    sku: sku
                 },
                 success: function(response) {
                     alert(response.mensaje);
+
+                    $("#m-cart").load(window.location.href + " #m-cart > *");
                 },
                 error: function() {
-                    alert("Error al añadir al carrito");
+                    alert("Error al añadir al elemento al carrito");
                 }
             });
         });
-    } */
+    }
 });

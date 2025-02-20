@@ -17,32 +17,35 @@
         <div class="m-section">
             <div class="m-title">{{$element->name}}</div>
             
-            <div class="m-desc m-col">
-                <strong>Descripción</strong>
+            <div class="m-desc m-row">
+                <strong>Descripción: </strong>
                 <span>{{$element->description}}</span>
             </div>
 
-            <div class="m-grade m-col">
-                <strong>Estado</strong>
+            <div class="m-grade m-row">
+                <strong>Estado: </strong>
                 <span>{{config('grades.' . $element->grade)}}</span>
             </div>
 
-            <div class="m-storage m-col">
-                <strong>Capacidad</strong>
+            <div class="m-storage m-row">
+                <strong>Capacidad: </strong>
                 <span>{{$element->storage}} GB</span>
             </div>
 
-            <div class="m-color m-col">
-                <strong>Color</strong>
+            <div class="m-color m-row">
+                <strong>Color: </strong>
                 <span class="{{$element->color}}" style="background-color: {{$element->color}};">{{config('colors.' . $element->color)}}</span>
             </div>
 
-            <div class="m-price m-col">
-                <strong>Precio</strong>
+            <div class="m-price m-row">
+                <strong>Precio: </strong>
                 <span>{{$element->price}}€</span>
             </div>
 
-            {{-- <button id="m-add">Añadir al carrito</button> --}}
+            <button id="m-add" data-sku="{{$element->sku}}" data-url="{{ route('cart.add') }}" data-token="{{ csrf_token() }}">
+                <span>Añadir al carrito</span>
+                <img src="{{ asset('resources/icons/plus.svg') }}" alt="add-cart">
+            </button>
         </div>
     </div>
 @endsection

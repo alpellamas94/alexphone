@@ -57,7 +57,7 @@
 
                     <div class="m-select">
                         <select id="storage-filter">
-                            <option value="">Todos las capacidades</option>
+                            <option value="">Todas las capacidades</option>
                             @foreach ($filters['storage'] as $s)
                                 <option value=".storage-{{$s}}">{{$s}} GB</option>
                             @endforeach
@@ -80,7 +80,7 @@
                                 <div class="m-grade">
                                     <span>{{config('grades.' . $item->grade)}}</span>
                                 </div>
-                                
+
                                 <div class="m-storage">
                                     <span>{{$item->storage}} GB</span>
                                 </div>

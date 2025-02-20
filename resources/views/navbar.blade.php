@@ -3,8 +3,11 @@
         <img src="{{ asset('resources/imgs/alexphone.svg') }}" alt="Logo alexphone">
     </a>
 
-    <a href="#" target="_self" class="m-carrito">
-        <img src="{{ asset('resources/icons/carrito.svg') }}" alt="Carrito">
-        <span>2</span>
+    <a href="#" target="_self" id="m-cart" class="m-cart">
+        <img src="{{ asset('resources/icons/cart.svg') }}" alt="Cart">
+        
+        @if(session()->has('cart'))
+            <span>{{ $cartTotal }}</span>
+        @endif
     </a>
 </div>

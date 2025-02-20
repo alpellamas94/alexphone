@@ -83,6 +83,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: baseline;
   gap: 1rem;
 }
 .m-col {
@@ -108,19 +109,19 @@ body {
   transition: 0.3s ease;
   z-index: 5;
 }
-.mdl-header .m-carrito {
+.mdl-header .m-cart {
   position: relative;
   display: flex;
   flex-direction: row;
   gap: 1rem;
 }
-.mdl-header .m-carrito:hover span {
+.mdl-header .m-cart:hover span {
   transform: scale(1.2);
 }
-.mdl-header .m-carrito img {
+.mdl-header .m-cart img {
   width: 3rem;
 }
-.mdl-header .m-carrito span {
+.mdl-header .m-cart span {
   position: absolute;
   bottom: -0.3rem;
   right: -0.75rem;
@@ -133,7 +134,7 @@ body {
   z-index: 1;
   transition: 0.1s ease transform;
 }
-.mdl-header .m-carrito span::before {
+.mdl-header .m-cart span::before {
   content: '';
   position: absolute;
   width: 2.2rem;
@@ -488,11 +489,13 @@ body {
   height: auto;
 }
 .mdl-detail .m-section {
+  align-self: center;
   max-width: calc(50% - 2.5rem);
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  height: fit-content;
 }
 .mdl-detail .m-section .m-title {
   font-family: "Manrope", sans-serif;
@@ -577,14 +580,52 @@ body {
 }
 .mdl-detail .m-section .m-price span {
   font-family: "Manrope", sans-serif;
-  font-size: 3.2rem;
-  line-height: 3.7rem;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  font-weight: 400;
   font-weight: 600;
   color: #2A3D65;
 }
 @media (max-width: 850px) {
   .mdl-detail .m-section .m-price span {
-    font-size: 2.2rem;
-    line-height: 2.5rem;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 400;
   }
+}
+.mdl-detail .m-section #m-add {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: fit-content;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  font-weight: 400;
+  color: #FFFF;
+  background-color: #2A3D65;
+  transition: 0.3s ease;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+@media (max-width: 850px) {
+  .mdl-detail .m-section #m-add {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 400;
+  }
+}
+@media (hover: hover) {
+  .mdl-detail .m-section #m-add:hover {
+    background-color: #3a558d;
+  }
+}
+.mdl-detail .m-section #m-add img {
+  width: 2.4rem;
+  filter: brightness(0) invert(1);
 }
