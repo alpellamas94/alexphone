@@ -34,7 +34,7 @@
 
             <div class="m-color m-col">
                 <strong>Color</strong>
-                <span style="background-color: {{$element->color}};">{{config('colors.' . $element->color)}}</span>
+                <span class="{{$element->color}}" style="background-color: {{$element->color}};">{{config('colors.' . $element->color)}}</span>
             </div>
 
             <div class="m-price m-col">

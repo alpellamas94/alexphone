@@ -1,5 +1,5 @@
 <div class="mdl-header">
-    <a href="{{ route('home') }}" target="_blank" class="m-logo">
+    <a href="{{ route('home') }}" target="_self" class="m-logo">
         <img src="{{ asset('resources/imgs/alexphone.svg') }}" alt="Logo alexphone">
     </a>
 
