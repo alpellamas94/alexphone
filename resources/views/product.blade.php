@@ -9,8 +9,8 @@
 @endsection
 
 @section('content')
-    <div class="mdl-detail">
-        <div class="m-img">
+    <div class="mdl-product">
+        <div class="m-img" data-fancybox="{{$element->sku}}" src="{{$element->image}}">
             <img src="{{$element->image}}" alt="{{$element->sku}}">
         </div>
 

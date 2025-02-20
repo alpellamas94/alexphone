@@ -458,7 +458,7 @@ body {
     line-height: 2.3rem;
   }
 }
-.mdl-detail {
+.mdl-product {
   max-width: 100rem;
   width: 100%;
   margin: 0 auto;
@@ -469,7 +469,7 @@ body {
   justify-content: space-between;
   gap: 5rem;
 }
-.mdl-detail .m-img {
+.mdl-product .m-img {
   max-width: calc(50% - 2.5rem);
   width: 100%;
   height: fit-content;
@@ -478,17 +478,18 @@ body {
   border-radius: 2rem;
   background-color: #FFFF;
   overflow: hidden;
+  cursor: pointer;
 }
 @media (hover: hover) {
-  .mdl-detail .m-img:hover {
+  .mdl-product .m-img:hover {
     box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.15), 0 1.3rem 2rem rgba(0, 0, 0, 0.1);
   }
 }
-.mdl-detail .m-img img {
+.mdl-product .m-img img {
   width: 100%;
   height: auto;
 }
-.mdl-detail .m-section {
+.mdl-product .m-section {
   align-self: center;
   max-width: calc(50% - 2.5rem);
   width: 100%;
@@ -497,7 +498,7 @@ body {
   gap: 1.5rem;
   height: fit-content;
 }
-.mdl-detail .m-section .m-title {
+.mdl-product .m-section .m-title {
   font-family: "Manrope", sans-serif;
   font-size: 2.8rem;
   line-height: 3.2rem;
@@ -505,12 +506,12 @@ body {
   color: #2A3D65;
 }
 @media (max-width: 850px) {
-  .mdl-detail .m-section .m-title {
+  .mdl-product .m-section .m-title {
     font-size: 2.2rem;
     line-height: 2.3rem;
   }
 }
-.mdl-detail .m-section .m-color span {
+.mdl-product .m-section .m-color span {
   box-sizing: border-box;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
@@ -524,20 +525,20 @@ body {
   color: #FFFF;
 }
 @media (max-width: 850px) {
-  .mdl-detail .m-section .m-color span {
+  .mdl-product .m-section .m-color span {
     font-size: 1.4rem;
     line-height: 1.75rem;
     font-weight: 400;
   }
 }
-.mdl-detail .m-section .m-color span.white {
+.mdl-product .m-section .m-color span.white {
   color: #000000;
 }
-.mdl-detail .m-section .m-desc,
-.mdl-detail .m-section .m-color,
-.mdl-detail .m-section .m-storage,
-.mdl-detail .m-section .m-grade,
-.mdl-detail .m-section .m-price {
+.mdl-product .m-section .m-desc,
+.mdl-product .m-section .m-color,
+.mdl-product .m-section .m-storage,
+.mdl-product .m-section .m-grade,
+.mdl-product .m-section .m-price {
   font-family: "Manrope", sans-serif;
   font-size: 1.6rem;
   line-height: 2rem;
@@ -545,21 +546,21 @@ body {
   color: #000000;
 }
 @media (max-width: 850px) {
-  .mdl-detail .m-section .m-desc,
-  .mdl-detail .m-section .m-color,
-  .mdl-detail .m-section .m-storage,
-  .mdl-detail .m-section .m-grade,
-  .mdl-detail .m-section .m-price {
+  .mdl-product .m-section .m-desc,
+  .mdl-product .m-section .m-color,
+  .mdl-product .m-section .m-storage,
+  .mdl-product .m-section .m-grade,
+  .mdl-product .m-section .m-price {
     font-size: 1.4rem;
     line-height: 1.75rem;
     font-weight: 400;
   }
 }
-.mdl-detail .m-section .m-desc strong,
-.mdl-detail .m-section .m-color strong,
-.mdl-detail .m-section .m-storage strong,
-.mdl-detail .m-section .m-grade strong,
-.mdl-detail .m-section .m-price strong {
+.mdl-product .m-section .m-desc strong,
+.mdl-product .m-section .m-color strong,
+.mdl-product .m-section .m-storage strong,
+.mdl-product .m-section .m-grade strong,
+.mdl-product .m-section .m-price strong {
   font-family: "Manrope", sans-serif;
   font-size: 1.8rem;
   line-height: 2.3rem;
@@ -568,17 +569,17 @@ body {
   color: #2A3D65;
 }
 @media (max-width: 850px) {
-  .mdl-detail .m-section .m-desc strong,
-  .mdl-detail .m-section .m-color strong,
-  .mdl-detail .m-section .m-storage strong,
-  .mdl-detail .m-section .m-grade strong,
-  .mdl-detail .m-section .m-price strong {
+  .mdl-product .m-section .m-desc strong,
+  .mdl-product .m-section .m-color strong,
+  .mdl-product .m-section .m-storage strong,
+  .mdl-product .m-section .m-grade strong,
+  .mdl-product .m-section .m-price strong {
     font-size: 1.6rem;
     line-height: 2rem;
     font-weight: 400;
   }
 }
-.mdl-detail .m-section .m-price span {
+.mdl-product .m-section .m-price span {
   font-family: "Manrope", sans-serif;
   font-size: 1.8rem;
   line-height: 2.3rem;
@@ -587,13 +588,13 @@ body {
   color: #2A3D65;
 }
 @media (max-width: 850px) {
-  .mdl-detail .m-section .m-price span {
+  .mdl-product .m-section .m-price span {
     font-size: 1.6rem;
     line-height: 2rem;
     font-weight: 400;
   }
 }
-.mdl-detail .m-section #m-add {
+.mdl-product .m-section #m-add {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -614,18 +615,18 @@ body {
   cursor: pointer;
 }
 @media (max-width: 850px) {
-  .mdl-detail .m-section #m-add {
+  .mdl-product .m-section #m-add {
     font-size: 1.6rem;
     line-height: 2rem;
     font-weight: 400;
   }
 }
 @media (hover: hover) {
-  .mdl-detail .m-section #m-add:hover {
+  .mdl-product .m-section #m-add:hover {
     background-color: #3a558d;
   }
 }
-.mdl-detail .m-section #m-add img {
+.mdl-product .m-section #m-add img {
   width: 2.4rem;
   filter: brightness(0) invert(1);
 }

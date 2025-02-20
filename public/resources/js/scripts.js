@@ -142,7 +142,9 @@ $(function () {
         toggleResetVisibility();
     }
 
-    if($('.mdl-detail').length > 0){
+    if($('.mdl-product').length > 0){
+        Fancybox.bind("[data-fancybox]", {});
+
         $("#m-add").click(function() {
             var sku = $(this).data("sku");
             var url = $(this).data("url");
@@ -161,7 +163,7 @@ $(function () {
                     $("#m-cart").load(window.location.href + " #m-cart > *");
                 },
                 error: function() {
-                    alert("Error al añadir al elemento al carrito");
+                    alert("Error al añadir elemento al carrito");
                 }
             });
         });
