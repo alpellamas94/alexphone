@@ -502,15 +502,16 @@ body {
 }
 .mdl-product .m-section .m-title {
   font-family: "Manrope", sans-serif;
-  font-size: 2.8rem;
-  line-height: 3.2rem;
+  font-size: 3.2rem;
+  line-height: 3.7rem;
+  font-weight: 600;
   font-weight: 500;
   color: #2A3D65;
 }
 @media (max-width: 850px) {
   .mdl-product .m-section .m-title {
     font-size: 2.2rem;
-    line-height: 2.3rem;
+    line-height: 2.5rem;
   }
 }
 .mdl-product .m-section .m-color span {
