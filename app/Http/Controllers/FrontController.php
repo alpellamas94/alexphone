@@ -7,45 +7,34 @@ use App\Http\Controllers\PhoneController;
 
 class FrontController extends Controller
 {
-    public function homepage(){
-        $phoneController = new PhoneController();
-        
-        // Recuperamos los elementos pasándole true en el primer parámetro para que devuelva los elementos unificados
-        $elements = $phoneController->getAll();
+    protected $phoneController;
 
-        // Comprobamos si elements trae resultados
-        if (is_null($elements)) {
-            // Sacamos los filtros en base a los elementos
-            $filters = $phoneController->getFilters($elements);
-        }else{
-            $filters = null;
-        }
+    public function __construct(PhoneController $phoneController)
+    {
+        $this->phoneController = $phoneController;
+    }
+
+    public function homepage()
+    {
+        // Recuperamos los elementos pasándole true en el primer parámetro para que devuelva los elementos unificados
+        $elements = $this->phoneController->getAll();
 
         // Sacamos los filtros en base a los elementos
-        $filters = $phoneController->getFilters($elements);
+        $filters = $elements ? $this->phoneController->getFilters($elements) : null;
 
         // Añadimos el título de la página
         $title_page = 'Página principal';
 
-        return view('homepage', [
-			'title_page' => $title_page,
-			'elements' => $elements,
-			'filters' => $filters,
-		]);
+        return view('homepage', compact('title_page', 'elements', 'filters'));
     }
 
-    public function product($sku){
-        $phoneController = new PhoneController();
-        
-        // Recuperamos los elementos pasándole true en el primer parámetro para que devuelva los elementos unificados
-        $element = $phoneController->getBySku($sku);
+    public function product($sku)
+    {
+        // Recuperamos el producto concreto
+        $element = $this->phoneController->getBySku($sku);
 
-        // Añadimos el título de la página
         $title_page = $element->name;
 
-        return view('product', [
-			'title_page' => $title_page,
-			'element' => $element,
-		]);
+        return view('product', compact('title_page', 'element'));
     }
 }
