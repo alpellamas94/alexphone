@@ -257,7 +257,7 @@ class CartController extends Controller
 
         // Verificar la respuesta de la API
         if ($response->successful()) {
-            // Limpiar el carrito de la sesiÃ³n
+            // Limpiar el carrito de la sesión
             session()->forget('cart');
 
             return true;
