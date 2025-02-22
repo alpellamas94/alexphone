@@ -29,6 +29,15 @@
     
             <div class="m-content">
                 <div class="m-filters">
+
+                    <div class="m-select">
+                        <select id="sort-filter">
+                            <option value="">Ordenar por</option>
+                            <option value="price:asc">Precio: Menor a Mayor</option>
+                            <option value="price:desc">Precio: Mayor a Menor</option>
+                        </select>
+                    </div>
+                    
                     <div class="m-select">
                         <select id="name-filter">
                             <option value="">Todos los modelos</option>
@@ -72,7 +81,7 @@
     
                 <div id="grid-elements" class="m-grid">
                 @foreach ($elements as $key => $item)
-                    <a href="{{ route('product.detail', ['sku' => $item->sku]) }}" class="m-item mix {{ Str::slug($item->name) }} {{ $item->color }} {{ $item->grade }} storage-{{ $item->storage }}">
+                    <a href="{{ route('product.detail', ['sku' => $item->sku]) }}" data-price="{{ $item->price }}" class="m-item mix {{ Str::slug($item->name) }} {{ $item->color }} {{ $item->grade }} storage-{{ $item->storage }}">
                         <div class="m-img" style="background-image: url('{{$item->image}}');"></div>
                         <div class="m-info">
                             <div class="m-title">{{$item->name}}</div>

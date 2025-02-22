@@ -15,16 +15,20 @@ $(function () {
         });
     }
 
-    if($('.mdl-listado .m-grid .m-item').length > 1){
+    if ($('.mdl-listado .m-grid .m-item').length > 1) {
         let mixer = mixitup("#grid-elements", {
             selectors: {
                 target: ".mix"
             },
             animation: {
                 duration: 300
+            },
+            load: {
+                sort: "default"
             }
         });
     
+        let $sortFilter = $("#sort-filter");
         let $nameFilter = $("#name-filter");
         let $gradeFilter = $("#grade-filter");
         let $colorFilter = $("#color-filter");
@@ -35,112 +39,92 @@ $(function () {
             let grade = $gradeFilter.val() || "";
             let color = $colorFilter.val() || "";
             let storage = $storageFilter.val() || "";
-        
+            let sort = $sortFilter.val() || "";
+    
             let filters = [];
-        
             if (name) filters.push(name);
             if (grade) filters.push(grade);
             if (color) filters.push(color);
             if (storage) filters.push(storage);
-        
+    
             let filterString = filters.length ? filters.join("") : "all";
-        
             mixer.filter(filterString);
-
-            // Elimina el primer caracter del string "."
-            if (name) name = name.substring(1);
-            if (grade) grade = grade.substring(1);
-            if (color) color = color.substring(1);
-            if (storage) storage = storage.substring(1);
-
-            // Actualizamos la URL con los parámetros de los filtros
+    
+            // Elimina el primer "." de cada filtro si existe
+            name = name.replace(/^\./, "");
+            grade = grade.replace(/^\./, "");
+            color = color.replace(/^\./, "");
+            storage = storage.replace(/^\./, "");
+    
+            // Actualiza la URL con los parámetros de filtros y ordenación
             let url = new URL(window.location);
-            if (name) {
-                url.searchParams.set('name', name);
-            } else {
-                url.searchParams.delete('name');
-            }
-            if (grade) {
-                url.searchParams.set('grade', grade);
-            } else {
-                url.searchParams.delete('grade');
-            }
-            if (color) {
-                url.searchParams.set('color', color);
-            } else {
-                url.searchParams.delete('color');
-            }
-            if (storage) {
-                url.searchParams.set('storage', storage);
-            } else {
-                url.searchParams.delete('storage');
-            }
-            window.history.replaceState({}, '', url);
-        }
-
-        // Setea los filtros en base a los parámetros de la URL
-        function setInitialFilters() {
-            let urlParams = new URLSearchParams(window.location.search);
-            let name = urlParams.get('name');
-            let grade = urlParams.get('grade');
-            let color = urlParams.get('color');
-            let storage = urlParams.get('storage');
-
-            if (name) {
-                $nameFilter.val(`.${name}`).trigger('change');
-            }
-            if (grade) {
-                $gradeFilter.val(`.${grade}`).trigger('change');
-            }
-            if (color) {
-                $colorFilter.val(`.${color}`).trigger('change');
-            }
-            if (storage) {
-                $storageFilter.val(`.${storage}`).trigger('change');
-            }
-
-            updateFilters();
-        }
-
-        // Controla si se mostrará el botón para resetear los filtros
-        function toggleResetVisibility() {
-            let name = $nameFilter.val();
-            let grade = $gradeFilter.val();
-            let color = $colorFilter.val();
-            let storage = $storageFilter.val();
-        
-            if (name || grade || color || storage) {
-                $("#reset-filter").addClass('active');
-            } else {
-                $("#reset-filter").removeClass('active');
-            }
+            name ? url.searchParams.set("name", name) : url.searchParams.delete("name");
+            grade ? url.searchParams.set("grade", grade) : url.searchParams.delete("grade");
+            color ? url.searchParams.set("color", color) : url.searchParams.delete("color");
+            storage ? url.searchParams.set("storage", storage) : url.searchParams.delete("storage");
+            sort ? url.searchParams.set("sort", sort) : url.searchParams.delete("sort");
+    
+            window.history.replaceState({}, "", url);
         }
     
-        // Actualizar filtros y visibilidad del reset
+        function updateSorting() {
+            let sortValue = $sortFilter.val();
+            mixer.sort(sortValue || "default");
+            updateFilters(); // Llamamos para actualizar la URL
+        }
+    
+        function setInitialFilters() {
+            let urlParams = new URLSearchParams(window.location.search);
+            let name = urlParams.get("name");
+            let grade = urlParams.get("grade");
+            let color = urlParams.get("color");
+            let storage = urlParams.get("storage");
+            let sort = urlParams.get("sort");
+    
+            if (name) $nameFilter.val(`.${name}`).trigger("change");
+            if (grade) $gradeFilter.val(`.${grade}`).trigger("change");
+            if (color) $colorFilter.val(`.${color}`).trigger("change");
+            if (storage) $storageFilter.val(`.${storage}`).trigger("change");
+            if (sort) {
+                $sortFilter.val(sort);
+                mixer.sort(sort);
+            }
+    
+            updateFilters();
+        }
+    
+        function toggleResetVisibility() {
+            let hasFilters = $nameFilter.val() || $gradeFilter.val() || $colorFilter.val() || $storageFilter.val() || $sortFilter.val();
+            console.log(hasFilters);
+            $("#reset-filter").toggleClass("active", !!hasFilters);
+        }
+    
         function handleFilterChange() {
             updateFilters();
+            updateSorting();
             toggleResetVisibility();
         }
-
+    
         $nameFilter.on("change", handleFilterChange);
         $gradeFilter.on("change", handleFilterChange);
         $colorFilter.on("change", handleFilterChange);
         $storageFilter.on("change", handleFilterChange);
-
-        // Resetear filtros al hacer clic en el botón de reset
-        $("#reset-filter").on("click", function() {
+        $sortFilter.on("change", handleFilterChange);
+    
+        $("#reset-filter").on("click", function () {
             $nameFilter.val("").trigger("change");
             $gradeFilter.val("").trigger("change");
             $colorFilter.val("").trigger("change");
             $storageFilter.val("").trigger("change");
+            $sortFilter.val("").trigger("change");
             updateFilters();
+            updateSorting();
             toggleResetVisibility();
         });
-        
-        // Inicializamos filtros al cargar la página
+    
         setInitialFilters();
         toggleResetVisibility();
-    }
+    }    
 
     if($('.mdl-product').length > 0){
         Fancybox.bind("[data-fancybox]", {});
