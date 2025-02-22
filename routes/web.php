@@ -12,3 +12,6 @@ Route::get('/product/{sku}', [FrontController::class,'product'])->name('product.
 
 // Añadir al cart elemento
 Route::post('/add-cart', [CartController::class, 'add'])->name('cart.add');
+
+// Ruta al listado del carrito
+Route::get('/cart-list', [FrontController::class,'cartlist'])->name('cart.list');

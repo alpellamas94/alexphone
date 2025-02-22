@@ -159,15 +159,15 @@ $(function () {
                     sku: sku
                 },
                 success: function(response) {
-                    $("#message-cart").html(response.mensaje)
+                    $("#message-cart").html('El producto ha sido añadido al carrito exitosamente.')
                         .removeClass("error")
                         .addClass("success active");
                     
                     setTimeout(() => {
                         $("#message-cart").removeClass("active");
-                    }, 1000);
+                    }, 2000);
 
-                    $("#m-cart").load(window.location.href + " #m-cart > *");
+                    reloadNavbarCart();
                 },
                 error: function() {
                     $("#message-cart").html("No se pudo añadir el producto al carrito.")
@@ -181,4 +181,65 @@ $(function () {
             });
         });
     }
+
+    if($('.mdl-cartlist .m-element').length > 0){
+        $('.mdl-cartlist .m-less').click(function (e) {
+            e.preventDefault();
+        
+            let input = $(this).siblings('input[type="number"]');
+            let valorActual = parseInt($(input).val());
+        
+            valorActual--;
+            
+            if (valorActual >= 1) {
+                $(input).val(valorActual);
+            }
+        
+            toggleButtonState(input, valorActual);
+        });
+        
+        $('.mdl-cartlist .m-more').click(function (e) {
+            e.preventDefault();
+        
+            let input = $(this).siblings('input[type="number"]');
+            let valorActual = parseInt($(input).val());
+        
+            valorActual++;
+        
+            if (valorActual <= 10) {
+                $(input).val(valorActual);
+            }
+        
+            toggleButtonState(input, valorActual);
+        });
+
+        function toggleButtonState(input, value) {
+            let lessButton = input.siblings('.m-less');
+            let moreButton = input.siblings('.m-more');
+        
+            if (value <= 1) {
+                lessButton.addClass('disabled');
+            } else {
+                lessButton.removeClass('disabled');
+            }
+            
+            if (value >= 10) {
+                moreButton.addClass('disabled');
+            } else {
+                moreButton.removeClass('disabled');
+            }
+        }
+
+        // Inicializar el estado de los botones al cargar la página
+        $('.mdl-cartlist input[type="number"]').each(function() {
+            let value = parseInt($(this).val());
+            toggleButtonState($(this), value);
+        });
+    }
 });
+
+function reloadNavbarCart(){
+    if($("#m-cart").length > 0){
+        $("#m-cart").load(window.location.href + " #m-cart > *");
+    }
+}

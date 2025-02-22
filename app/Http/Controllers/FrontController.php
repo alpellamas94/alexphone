@@ -4,19 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\PhoneController;
+use App\Http\Controllers\CartController;
 
 class FrontController extends Controller
 {
     protected $phoneController;
+    protected $cartController;
 
-    public function __construct(PhoneController $phoneController)
+    public function __construct(PhoneController $phoneController, CartController $cartController)
     {
         $this->phoneController = $phoneController;
+        $this->cartController = $cartController;
     }
 
     public function homepage()
     {
-        // Recuperamos los elementos pasándole true en el primer parámetro para que devuelva los elementos unificados
+        // Recuperamos los elementos de la llamada a la api
         $elements = $this->phoneController->getAll();
 
         // Sacamos los filtros en base a los elementos
@@ -36,5 +39,18 @@ class FrontController extends Controller
         $title_page = $element->name;
 
         return view('product', compact('title_page', 'element'));
+    }
+
+    public function cartlist()
+    {
+        // Recuperamos el array del carrito
+        $cart = $this->cartController->getCarrito();
+
+        $totalPrice = $this->cartController->getTotalPrice();
+
+        // Añadimos el título de la página
+        $title_page = 'Carrito';
+
+        return view('cartlist', compact('title_page', 'cart', 'totalPrice'));
     }
 }

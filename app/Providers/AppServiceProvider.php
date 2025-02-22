@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Pasamos el total de elementos en el cart a todas las vistas "navbar"
         View::composer('navbar', function ($view) {
-            $view->with('cartTotal', CartController::getTotal());
+            $view->with('cartTotal', CartController::getSessionCount());
         });
     }
 }

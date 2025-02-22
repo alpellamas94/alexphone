@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\phoneController;
 
 class CartController extends Controller
 {
+    protected $phoneController;
+
+    public function __construct(PhoneController $phoneController)
+    {
+        $this->phoneController = $phoneController;
+    }
+
     public function add(Request $request)
     {
         // Obtenemos el Sku del producto
@@ -24,13 +32,43 @@ class CartController extends Controller
         // Guardar el cart actualizado en la sesión
         session()->put('cart', $cart);
 
-        return response()->json([
-            'mensaje' => 'El producto ha sido añadido al carrito exitosamente.',
-            'cart' => $cart
-        ]);
+        return true;
+    }
+
+    public function remove(Request $request)
+    {
+        // Obtenemos el Sku del producto
+        $sku = $request->input('sku');
+
+        // Recuperamos el cart de la sesión
+        $cart = session()->get('cart', []);
+
+        // Verificamos si el producto existe en el cart
+        if (array_key_exists($sku, $cart)) {
+            // Si la cantidad es mayor a 1, disminuimos la cantidad
+            if ($cart[$sku] > 1) {
+                $cart[$sku]--;
+            } else {
+                // Si la cantidad es 1, eliminamos el producto del cart
+                unset($cart[$sku]);
+            }
+
+            // Guardamos el cart actualizado en la sesión
+            session()->put('cart', $cart);
+
+            return response()->json([
+                'mensaje' => 'El producto ha sido removido del carrito exitosamente.',
+                'cart' => $cart
+            ]);
+        } else {
+            return response()->json([
+                'mensaje' => 'El producto no existe en el carrito.',
+                'cart' => $cart
+            ], 404);
+        }
     }
     
-    public static function getTotal()
+    public static function getSessionCount()
     {
         // Recuperamos el cart de la sesión
         $cart = session()->get('cart', []);
@@ -41,11 +79,48 @@ class CartController extends Controller
         return $count;
     }
 
-    public function getCart()
+    public function getSessionCart()
     {
         // Obtenemos el array de elementos de la sesión
         $cart = session()->get('cart', []);
 
         return $cart;
+    }
+
+    public function getCarrito()
+    {
+        // Recuperamos los elementos de la session
+        $elementsSession = $this->getSessionCart();
+        
+        // Recuperamos los elementos de la api
+        $elementsApi = $this->phoneController->getAll();
+
+        $cart = [];
+
+        foreach ($elementsSession as $sku => $quantity) {
+            foreach ($elementsApi as $element) {
+                if ($element->sku === $sku) {
+                    $element->quantity = $quantity;
+                    $cart[] = $element;
+                    break;
+                }
+            }
+        }
+
+        return $cart;
+    }
+
+    public function getTotalPrice()
+    {
+        // Recuperamos los elementos del carrito
+        $elements = $this->getCarrito();
+
+        // Sumamos todos los precios de los elementos
+        $totalPrice = 0;
+        foreach ($elements as $element) {
+            $totalPrice += $element->price * $element->quantity;
+        }
+
+        return $totalPrice;
     }
 }

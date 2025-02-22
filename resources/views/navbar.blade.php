@@ -3,7 +3,7 @@
         <img src="{{ asset('resources/imgs/alexphone.svg') }}" alt="Logo alexphone">
     </a>
 
-    <a href="#" target="_self" id="m-cart" class="m-cart">
+    <a href="{{route('cart.list')}}" target="_self" id="m-cart" class="m-cart">
         <img src="{{ asset('resources/icons/cart.svg') }}" alt="Cart">
         
         @if(session()->has('cart'))

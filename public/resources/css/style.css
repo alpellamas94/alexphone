@@ -94,6 +94,46 @@ body {
 .m-col > * {
   width: fit-content;
 }
+.m-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: fit-content;
+  box-sizing: border-box;
+  padding: 1.7rem;
+  margin-top: 2rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  font-weight: 400;
+  color: #FFFF;
+  background-color: #2A3D65;
+  transition: 0.3s ease;
+  border-radius: 1rem;
+  border: unset;
+  cursor: pointer;
+}
+@media (max-width: 850px) {
+  .m-button {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 400;
+  }
+}
+.m-button.full {
+  width: 100%;
+}
+@media (hover: hover) {
+  .m-button:hover {
+    background-color: #3a558d;
+  }
+}
+.m-button img {
+  width: 2.4rem;
+  filter: brightness(0) invert(1);
+}
 .mdl-header {
   position: fixed;
   top: 0;
@@ -116,7 +156,7 @@ body {
   gap: 1rem;
 }
 .mdl-header .m-cart:hover span {
-  transform: scale(1.2);
+  transform: scale(1.3);
 }
 .mdl-header .m-cart img {
   width: 3rem;
@@ -140,7 +180,8 @@ body {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 100%;
-  background-color: red;
+  background-color: #2A3D65;
+  border: 0.1rem solid #FFFF;
   z-index: -1;
   top: 50%;
   left: 50%;
@@ -597,45 +638,8 @@ body {
     font-weight: 400;
   }
 }
-.mdl-product .m-section #m-add {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  width: fit-content;
-  box-sizing: border-box;
-  padding: 1.7rem;
-  margin-top: 2rem;
-  font-family: "Manrope", sans-serif;
-  font-size: 1.8rem;
-  line-height: 2.3rem;
-  font-weight: 400;
-  color: #FFFF;
-  background-color: #2A3D65;
-  transition: 0.3s ease;
-  border-radius: 1rem;
-  border: unset;
-  cursor: pointer;
-}
-@media (max-width: 850px) {
-  .mdl-product .m-section #m-add {
-    font-size: 1.6rem;
-    line-height: 2rem;
-    font-weight: 400;
-  }
-}
-@media (hover: hover) {
-  .mdl-product .m-section #m-add:hover {
-    background-color: #3a558d;
-  }
-}
-.mdl-product .m-section #m-add img {
-  width: 2.4rem;
-  filter: brightness(0) invert(1);
-}
 #message-cart {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -670,4 +674,248 @@ body {
 }
 #message-cart.error {
   background-color: red;
+}
+.mdl-cartlist {
+  max-width: 110rem;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 8rem 4rem;
+}
+.mdl-cartlist .m-grid {
+  max-width: 60rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.mdl-cartlist .m-grid .m-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  border-width: thin;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.16);
+  border-radius: 2rem;
+  background-color: #FFFF;
+  padding: 1.5rem 1.5rem 1.5rem 0rem;
+}
+.mdl-cartlist .m-grid .m-element .m-section {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  max-width: 45rem;
+  width: 100%;
+  color: #000000;
+}
+.mdl-cartlist .m-grid .m-element .m-section .m-img {
+  max-width: 12rem;
+  width: 100%;
+  height: fit-content;
+  background-color: #FFFF;
+  overflow: hidden;
+}
+.mdl-cartlist .m-grid .m-element .m-section .m-img img {
+  width: 100%;
+  height: auto;
+}
+.mdl-cartlist .m-grid .m-element .m-section .m-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.mdl-cartlist .m-grid .m-element .m-section .m-info .m-title {
+  font-family: "Manrope", sans-serif;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  font-weight: 400;
+  font-weight: 500;
+  color: #2A3D65;
+}
+@media (max-width: 850px) {
+  .mdl-cartlist .m-grid .m-element .m-section .m-info .m-title {
+    font-size: 1.4rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+  }
+}
+.mdl-cartlist .m-grid .m-element .m-section .m-info .m-desc {
+  font-family: "Manrope", sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.75rem;
+  font-weight: 400;
+  font-weight: 500;
+  color: #000000;
+}
+@media (max-width: 850px) {
+  .mdl-cartlist .m-grid .m-element .m-section .m-info .m-desc {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+  }
+}
+.mdl-cartlist .m-grid .m-element .m-section .m-info .m-price {
+  font-family: "Manrope", sans-serif;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  font-weight: 400;
+  font-weight: 600;
+  color: #2A3D65;
+}
+@media (max-width: 850px) {
+  .mdl-cartlist .m-grid .m-element .m-section .m-info .m-price {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 400;
+  }
+}
+.mdl-cartlist .m-grid .m-element .m-section .m-info p {
+  margin: 0;
+}
+.mdl-cartlist .m-grid .m-element .m-section .m-info p span {
+  font-family: "Manrope", sans-serif;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  font-weight: 400;
+  font-weight: 500;
+}
+@media (max-width: 850px) {
+  .mdl-cartlist .m-grid .m-element .m-section .m-info p span {
+    font-size: 1.4rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+  }
+}
+.mdl-cartlist .m-grid .m-element .m-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 13rem;
+}
+.mdl-cartlist .m-grid .m-element .m-controls .m-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  background-color: #2A3D65;
+  border-radius: 0.4rem;
+  color: #FFFF;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.mdl-cartlist .m-grid .m-element .m-controls .m-remove img {
+  width: 1.8rem;
+}
+.mdl-cartlist .m-grid .m-element .m-controls .m-quantity {
+  width: min-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  gap: 0.5rem;
+}
+.mdl-cartlist .m-grid .m-element .m-controls .m-quantity .m-less,
+.mdl-cartlist .m-grid .m-element .m-controls .m-quantity .m-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  background-color: #2A3D65;
+  border-radius: 0.4rem;
+  color: #FFFF;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.mdl-cartlist .m-grid .m-element .m-controls .m-quantity .m-less.disabled,
+.mdl-cartlist .m-grid .m-element .m-controls .m-quantity .m-more.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.mdl-cartlist .m-grid .m-element .m-controls .m-quantity .m-less img,
+.mdl-cartlist .m-grid .m-element .m-controls .m-quantity .m-more img {
+  width: 2rem;
+}
+.mdl-cartlist .m-grid .m-element .m-controls .m-quantity input[type="number"] {
+  width: auto;
+  height: 3.2rem;
+  min-height: unset;
+  border: unset;
+  background: unset;
+  padding: unset;
+  appearance: none;
+  user-select: none;
+  pointer-events: none;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  font-weight: 400;
+  color: #000000;
+  font-weight: 600;
+  text-align: center;
+}
+@media (max-width: 850px) {
+  .mdl-cartlist .m-grid .m-element .m-controls .m-quantity input[type="number"] {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 400;
+  }
+}
+.mdl-cartlist .m-grid .m-element .m-controls .m-quantity input[type="number"]::-webkit-outer-spin-button,
+.mdl-cartlist .m-grid .m-element .m-controls .m-quantity input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.mdl-cartlist #m-total {
+  position: sticky;
+  height: fit-content;
+  top: 12rem;
+  max-width: 25rem;
+  width: 100%;
+  background-color: #FFFF;
+  border-width: thin;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.16);
+  border-radius: 2rem;
+  padding: 3rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  font-weight: 400;
+  color: #000000;
+}
+@media (max-width: 850px) {
+  .mdl-cartlist #m-total {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 400;
+  }
+}
+.mdl-cartlist #m-total .m-title {
+  font-size: 2.3rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.16);
+  font-weight: 500;
+}
+.mdl-cartlist #m-total .m-info {
+  padding-top: 1rem;
+  color: #2A3D65;
+}
+.mdl-cartlist #m-total .m-info span {
+  font-weight: 500;
+}
+.mdl-cartlist #m-total .m-info strong {
+  font-size: 2.4rem;
 }
