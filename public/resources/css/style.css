@@ -724,7 +724,7 @@ body {
     gap: 2rem;
   }
   .mdl-product .m-img {
-    max-width: 25rem;
+    max-width: 22rem;
   }
   .mdl-product .m-section {
     max-width: 100%;
@@ -1062,7 +1062,7 @@ body {
 }
 #message-cart.active {
   opacity: 1;
-  bottom: 10rem;
+  bottom: 5rem;
 }
 #message-cart.success {
   background-color: green;

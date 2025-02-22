@@ -139,7 +139,7 @@ $(function () {
                     sku: sku
                 },
                 success: function(response) {
-                    $("#message-cart").html('El producto ha sido añadido al carrito exitosamente.')
+                    $("#message-cart").html('El producto ha sido añadido al carrito.')
                         .removeClass("error")
                         .addClass("success active");
                     
