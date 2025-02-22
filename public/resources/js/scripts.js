@@ -157,14 +157,19 @@ $(function () {
                     setTimeout(() => {
                         $("#message-cart").removeClass("active");
                     }, 2000);
-                }
+                },
             });
         });
     }
 
     if($('.mdl-cartlist .m-element').length > 0){
         $('.mdl-cartlist .m-less').click(function (e) {
-            e.preventDefault();
+            
+            // Detiene la ejecución aquí si el botón está deshabilitado
+            if ($(this).hasClass('disabled')) {
+                e.preventDefault();
+                return;
+            }
         
             let input = $(this).siblings('input[type="number"]');
             let valorActual = parseInt($(input).val());
@@ -179,7 +184,12 @@ $(function () {
         });
         
         $('.mdl-cartlist .m-more').click(function (e) {
-            e.preventDefault();
+
+            // Detiene la ejecución aquí si el botón está deshabilitado
+            if ($(this).hasClass('disabled')) {
+                e.preventDefault();
+                return;
+            }
         
             let input = $(this).siblings('input[type="number"]');
             let valorActual = parseInt($(input).val());
@@ -194,7 +204,12 @@ $(function () {
         });
 
         $('.mdl-cartlist .m-remove').click(function (e) {
-            e.preventDefault();
+            
+            // Detiene la ejecución aquí si el botón está deshabilitado
+            if ($(this).hasClass('disabled')) {
+                e.preventDefault();
+                return;
+            }
 
             let element = $(this).closest('.m-element');
             let sku = element.data('sku');
@@ -259,6 +274,8 @@ $(function () {
         }
         
         function updateQuantity(sku, url, token, quantity){
+            toggleDisabledButtons(true);
+
             $.ajax({
                 url: url,
                 type: "POST",
@@ -273,11 +290,16 @@ $(function () {
                 },
                 error: function() {
                     console.log(response);
+                },
+                complete: function() {
+                    toggleDisabledButtons();
                 }
             });
         }
         
         function removeItem(sku, url, token, element) {
+            toggleDisabledButtons(true);
+            
             $.ajax({
                 url: url,
                 type: "POST",
@@ -294,6 +316,9 @@ $(function () {
                 },
                 error: function() {
                     console.error("Error al eliminar el producto del carrito.");
+                },
+                complete: function() {
+                    toggleDisabledButtons();
                 }
             });
         }
@@ -305,5 +330,17 @@ function reloadNavbarCart(){
         setTimeout(() => {
             $("#m-cart").load(window.location.href + " #m-cart > *");
         }, 500);
+    }
+}
+
+function toggleDisabledButtons(disabled) {
+    if (disabled) {
+        $('.check-disabled').addClass('disabled').on('click.preventDefault', function(e) {
+            e.preventDefault();
+        });
+    } else {
+        setTimeout(() => {
+            $('.check-disabled').removeClass('disabled').off('click.preventDefault');
+        }, 1000);
     }
 }

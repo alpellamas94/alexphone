@@ -28,16 +28,16 @@
                         </div>
                     </div>
                     <div class="m-controls">
-                        <div class="m-remove">
+                        <div class="m-remove check-disabled">
                             <img src="{{ asset('resources/icons/remove.svg') }}" alt="less">
                         </div>
 
                         <div class="m-quantity">
-                            <div class="m-less">
+                            <div class="m-less check-disabled">
                                 <img src="{{ asset('resources/icons/less.svg') }}" alt="less">
                             </div>
                                 <input type="number" readonly name="adultos" min="0" max="5" value="{{number_format($element->quantity)}}">
-                            <div class="m-more">
+                            <div class="m-more check-disabled">
                                 <img src="{{ asset('resources/icons/more.svg') }}" alt="more">
                             </div>
                         </div>

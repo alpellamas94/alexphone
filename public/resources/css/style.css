@@ -134,6 +134,10 @@ body {
   width: 2.4rem;
   filter: brightness(0) invert(1);
 }
+.check-disabled.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 .mdl-header {
   position: fixed;
   top: 0;
@@ -853,11 +857,6 @@ body {
   text-align: center;
   cursor: pointer;
   transition: 0.3s ease;
-}
-.mdl-cartlist .m-grid .m-element .m-controls .m-quantity .m-less.disabled,
-.mdl-cartlist .m-grid .m-element .m-controls .m-quantity .m-more.disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
 }
 .mdl-cartlist .m-grid .m-element .m-controls .m-quantity .m-less img,
 .mdl-cartlist .m-grid .m-element .m-controls .m-quantity .m-more img {

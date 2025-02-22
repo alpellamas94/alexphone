@@ -83,6 +83,12 @@ body{
     }
 }
 
+//? Disabled
+.check-disabled.disabled{
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
 //? Módulos
 .mdl-header{
     position: fixed;
@@ -649,11 +655,6 @@ body{
                     text-align: center;
                     cursor: pointer;
                     transition: @transition1;
-    
-                    &.disabled {
-                        opacity: 0.4;
-                        cursor: not-allowed;
-                    }
 
                     img{
                         width: 2rem;

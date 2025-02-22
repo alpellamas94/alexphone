@@ -38,7 +38,7 @@
             </div>
 
             <div class="m-price m-row">
-                <strong>Precio: </strong>
+                <strong>Precio por unidad: </strong>
                 <span>{{number_format($element->price, 0) }}€</span>
             </div>
 
