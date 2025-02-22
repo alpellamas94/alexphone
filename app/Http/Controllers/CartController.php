@@ -3,7 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\PhoneController;
+
+interface CreateOrderSku {
+    public function getId(): string;
+    public function getSku(): string;
+    public function getGrade(): string;
+    public function getColor(): string;
+    public function getStorage(): int;
+}
+
+interface CreateOrderBody {
+    /** @return Sku[] */
+    public function getSkus(): array;
+}
+
+interface Sku {
+    public function getId(): string;
+    public function getSku(): string;
+    public function getName(): string;
+    public function getDescription(): string;
+    public function getPrice(): float;
+    public function getGrade(): string;
+    public function getColor(): string;
+    public function getStorage(): int;
+    public function getImage(): string;
+}
+
+interface SkuConstants {
+    public const SKU_GRADES = ['excellent', 'very_good', 'good'];
+    public const SKU_COLORS = ['white', 'black', 'red', 'pink'];
+    public const SKU_STORAGES = [64, 128, 256, 512];
+}
 
 class CartController extends Controller
 {
@@ -144,5 +176,100 @@ class CartController extends Controller
         }
 
         return $totalPrice;
+    }
+
+    public function payCart()
+    {
+        // Recuperamos el array del carrito
+        $cart = $this->getCarrito();
+
+        // Crear el array de SKUs
+        $skus = array_reduce($cart, function ($arrayClean, $item) {
+            for ($i = 0; $i < $item->quantity; $i++) {
+                $arrayClean[] = new class($item) implements CreateOrderSku {
+                    private $item;
+
+                    public function __construct($item)
+                    {
+                        // Solo asignar los campos requeridos
+                        $this->item = (object) [
+                            'id' => $item->id,
+                            'sku' => $item->sku,
+                            'grade' => $item->grade,
+                            'color' => $item->color,
+                            'storage' => $item->storage,
+                        ];
+                    }
+
+                    public function getId(): string { return $this->item->id; }
+                    public function getSku(): string { return $this->item->sku; }
+                    public function getGrade(): string { return $this->item->grade; }
+                    public function getColor(): string { return $this->item->color; }
+                    public function getStorage(): int { return $this->item->storage; }
+                };
+            }
+            return $arrayClean;
+        }, []);
+
+        // Validar los SKUs antes de enviar
+        foreach ($skus as $sku) {
+            if (!in_array($sku->getGrade(), SkuConstants::SKU_GRADES)) {
+                throw new \Exception("Invalid grade value: " . $sku->getGrade());
+            }
+            if (!in_array($sku->getColor(), SkuConstants::SKU_COLORS)) {
+                throw new \Exception("Invalid color value: " . $sku->getColor());
+            }
+            if (!in_array($sku->getStorage(), SkuConstants::SKU_STORAGES)) {
+                throw new \Exception("Invalid storage value: " . $sku->getStorage());
+            }
+        }
+
+        // Crear el cuerpo de la solicitud
+        $orderBody = new class($skus) implements CreateOrderBody {
+            private array $skus;
+
+            public function __construct(array $skus)
+            {
+                $this->skus = $skus;
+            }
+
+            public function getSkus(): array
+            {
+                return $this->skus;
+            }
+        };
+
+        // Transformar los objetos CreateOrderSku en arrays asociativos
+        $skusData = array_map(function ($sku) {
+            return [
+                'id' => $sku->getId(),
+                'sku' => $sku->getSku(),
+                'grade' => $sku->getGrade(),
+                'color' => $sku->getColor(),
+                'storage' => $sku->getStorage(),
+            ];
+        }, $orderBody->getSkus());
+
+        /* print_r(json_encode($skusData));
+        die(); */
+
+        // Realizamos el PUT
+        $response = Http::put('https://test.alexphone.com/api/v1/order', [
+            'skus' => $skusData,
+        ]);
+
+        // Verificar la respuesta de la API
+        if ($response->successful()) {
+            // Limpiar el carrito de la sesiÃ³n
+            //session()->forget('cart');
+        } else {
+            // Manejar el error en caso de que la solicitud falle
+            return response()->json([
+                'mensaje' => 'Error al procesar el pago del carrito.',
+                'error' => $response->body()
+            ], $response->status());
+        }
+
+        return $response;
     }
 }

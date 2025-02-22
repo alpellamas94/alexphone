@@ -52,7 +52,7 @@
                 <span>Importe total:</span><strong> {{ number_format($totalPrice, 0) }}€</strong>
             </div>
             
-            <button id="m-pay" class="m-button full" {{-- data-url="{{ route('cart.add') }}" data-token="{{ csrf_token() }}" --}}>
+            <button id="m-pay" class="m-button full" data-url="{{ route('cart.pay') }}" onclick="payCart(this);">
                 <span>Realizar pedido</span>
             </button>
         </div>
@@ -62,4 +62,6 @@
             Todavía no has seleccionado ningún producto.
         </div>
     </div>
+
+    <div id="message-cart"></div>
 @endsection

@@ -21,3 +21,6 @@ Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name
 
 // Eliminar un elemento de carrito
 Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
+
+// Comprobación del carrito contra la API
+Route::get('/pay-cart', [CartController::class, 'payCart'])->name('cart.pay');

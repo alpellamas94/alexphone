@@ -201,6 +201,7 @@ body {
   width: 100%;
   min-height: 50rem;
   user-select: none;
+  overflow: hidden;
 }
 .mdl-hero .m-content {
   max-width: 75rem;

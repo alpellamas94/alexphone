@@ -344,3 +344,19 @@ function toggleDisabledButtons(disabled) {
         }, 1000);
     }
 }
+
+function payCart(element){
+    var url = $(element).data("url");
+
+    $.ajax({
+        url: url,
+        type: "GET",
+
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(error) {
+            console.log(error);
+        },
+    });
+}
