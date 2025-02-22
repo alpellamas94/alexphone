@@ -250,9 +250,6 @@ class CartController extends Controller
             ];
         }, $orderBody->getSkus());
 
-        /* print_r(json_encode($skusData));
-        die(); */
-
         // Realizamos el PUT
         $response = Http::put('https://test.alexphone.com/api/v1/order', [
             'skus' => $skusData,
@@ -261,7 +258,9 @@ class CartController extends Controller
         // Verificar la respuesta de la API
         if ($response->successful()) {
             // Limpiar el carrito de la sesiÃ³n
-            //session()->forget('cart');
+            session()->forget('cart');
+
+            return true;
         } else {
             // Manejar el error en caso de que la solicitud falle
             return response()->json([
@@ -269,7 +268,5 @@ class CartController extends Controller
                 'error' => $response->body()
             ], $response->status());
         }
-
-        return $response;
     }
 }

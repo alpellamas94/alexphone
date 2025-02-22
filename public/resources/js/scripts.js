@@ -353,10 +353,28 @@ function payCart(element){
         type: "GET",
 
         success: function(response) {
-            console.log(response);
+            $("#message-cart").html('Compra realizada con éxito.')
+                .removeClass("error")
+                .addClass("success active");
+            
+            setTimeout(() => {
+                $("#message-cart").removeClass("active");
+                window.location.href = "/";
+            }, 2000);
+
+            reloadNavbarCart();
         },
         error: function(error) {
-            console.log(error);
+
+            $("#message-cart").html("Error al finalizar la compra.")
+                .removeClass("success")
+                .addClass("error active");
+            
+            setTimeout(() => {
+                $("#message-cart").removeClass("active");
+            }, 2000);
+
+            reloadNavbarCart();
         },
     });
 }

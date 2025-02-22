@@ -54,12 +54,16 @@
             
             <button id="m-pay" class="m-button full" data-url="{{ route('cart.pay') }}" onclick="payCart(this);">
                 <span>Realizar pedido</span>
+                <img src="{{ asset('resources/icons/cart.svg') }}" alt="buy-cart">
             </button>
         </div>
         @endif
 
         <div class="m-empty @if (!$cart) show @endif">
-            Todavía no has seleccionado ningún producto.
+            <span>Todavía no has seleccionado ningún producto.</span>
+            <a class="m-button" href="{{ route('home') }}">
+                <span>Volver a la página principal</span>
+            </a>
         </div>
     </div>
 

@@ -75,6 +75,7 @@
                     </div>
 
                     <button id="reset-filter" class="m-reset">
+                        <span>Eliminar filtros</span>
                         <img src="{{ asset('resources/icons/close.svg') }}" alt="Close">
                     </button>
                 </div>
