@@ -16,6 +16,8 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
+        die('test');
+
         // Obtenemos el Sku del producto
         $sku = $request->input('sku');
 

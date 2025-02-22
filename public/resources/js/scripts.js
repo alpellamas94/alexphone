@@ -150,6 +150,8 @@ $(function () {
                     reloadNavbarCart();
                 },
                 error: function() {
+                    console.log(response);
+
                     $("#message-cart").html("No se pudo añadir el producto al carrito.")
                         .removeClass("success")
                         .addClass("error active");
