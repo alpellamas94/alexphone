@@ -8,9 +8,6 @@ use App\Http\Controllers\CartController;
 
 class FrontController extends Controller
 {
-    protected $phoneController;
-    protected $cartController;
-
     public function __construct(PhoneController $phoneController, CartController $cartController)
     {
         $this->phoneController = $phoneController;
