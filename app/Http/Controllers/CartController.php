@@ -14,7 +14,7 @@ class CartController extends Controller
         $this->phoneController = $phoneController;
     }
 
-    public function add(Request $request)
+    public function addcart(Request $request)
     {
         // Obtenemos el Sku del producto
         $sku = $request->input('sku');
