@@ -10,8 +10,14 @@ Route::get('/',[FrontController::class,'homepage'])->name('home');
 // Ruta al detalle de producto
 Route::get('/product/{sku}', [FrontController::class,'product'])->name('product.detail');
 
+// Ruta al listado del carrito
+Route::get('/cart-list', [FrontController::class,'cartlist'])->name('cart.list');
+
 // Añadir al cart elemento
 Route::post('/add-cart', [CartController::class, 'add'])->name('cart.add');
 
-// Ruta al listado del carrito
-Route::get('/cart-list', [FrontController::class,'cartlist'])->name('cart.list');
+// Actualizar la cantidad de un elemento de carrito
+Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');
+
+// Eliminar un elemento de carrito
+Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');

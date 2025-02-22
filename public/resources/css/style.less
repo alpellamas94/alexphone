@@ -515,6 +515,16 @@ body{
     margin: 0 auto;
     box-sizing: border-box;
     padding: 8rem 4rem;
+
+    .m-empty{
+        display: none;
+        .m-title4();
+        color: @color-blue;
+
+        &.show{
+            display: block;
+        }
+    }
     
     .m-grid{
         max-width: 60rem;

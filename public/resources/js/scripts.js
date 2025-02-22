@@ -195,7 +195,7 @@ $(function () {
                 $(input).val(valorActual);
             }
         
-            toggleButtonState(input, valorActual);
+            toggleButtonState(false, input, valorActual);
         });
         
         $('.mdl-cartlist .m-more').click(function (e) {
@@ -210,10 +210,28 @@ $(function () {
                 $(input).val(valorActual);
             }
         
-            toggleButtonState(input, valorActual);
+            toggleButtonState(false, input, valorActual);
         });
 
-        function toggleButtonState(input, value) {
+        $('.mdl-cartlist .m-remove').click(function (e) {
+            e.preventDefault();
+
+            let element = $(this).closest('.m-element');
+            let sku = element.data('sku');
+            let cartList = $(this).closest('.mdl-cartlist');
+            let token = cartList.data('token');
+            let urldelete = cartList.data('delete');
+
+            removeItem(sku, urldelete, token, element);
+        });
+
+        // Inicializar el estado de los botones al cargar la página
+        $('.mdl-cartlist input[type="number"]').each(function() {
+            let value = parseInt($(this).val());
+            toggleButtonState(true, $(this), value);
+        });
+
+        function toggleButtonState(init, input, value) {
             let lessButton = input.siblings('.m-less');
             let moreButton = input.siblings('.m-more');
         
@@ -228,18 +246,84 @@ $(function () {
             } else {
                 moreButton.removeClass('disabled');
             }
+
+            // Llamada a updateQuantity() con los parámetros necesarios
+            if (!init && value >= 1 && value <= 10) {
+                let sku = input.closest('.m-element').data('sku');
+                let urlupdate = input.closest('.mdl-cartlist').data('update');
+                let token = input.closest('.mdl-cartlist').data('token');
+                updateQuantity(sku, urlupdate, token, value); 
+            }
         }
 
-        // Inicializar el estado de los botones al cargar la página
-        $('.mdl-cartlist input[type="number"]').each(function() {
-            let value = parseInt($(this).val());
-            toggleButtonState($(this), value);
-        });
+        function reloadPrice(){
+            if($("#m-total").length > 0){
+                setTimeout(() => {
+                    $("#m-total").load(window.location.href + " #m-total > *");
+                }, 300);
+            }
+        }
+        
+        function checkVoidCart() {
+            const cartList = $('.mdl-cartlist');
+            const cartElements = cartList.find('.m-element');
+            const totalElement = cartList.find('#m-total');
+            const emptyElement = cartList.find('.m-empty');
+        
+            if (cartElements.length === 0) {
+                totalElement.hide();
+                emptyElement.show();
+            }
+        }
+        
+        function updateQuantity(sku, url, token, quantity){
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    _token: token,
+                    sku: sku,
+                    quantity: quantity,
+                },
+                success: function(response) {
+                    console.log(response);
+        
+                    reloadNavbarCart();
+                    reloadPrice();
+                },
+                error: function() {
+                    
+                }
+            });
+        }
+        
+        function removeItem(sku, url, token, element) {
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    _token: token,
+                    sku: sku,
+                },
+                success: function(response) {
+                    element.remove();
+        
+                    reloadNavbarCart();
+                    reloadPrice();
+                    checkVoidCart();
+                },
+                error: function() {
+                    console.error("Error al eliminar el producto del carrito.");
+                }
+            });
+        }
     }
 });
 
 function reloadNavbarCart(){
     if($("#m-cart").length > 0){
-        $("#m-cart").load(window.location.href + " #m-cart > *");
+        setTimeout(() => {
+            $("#m-cart").load(window.location.href + " #m-cart > *");
+        }, 300);
     }
 }

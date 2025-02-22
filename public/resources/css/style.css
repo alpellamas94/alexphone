@@ -686,6 +686,23 @@ body {
   box-sizing: border-box;
   padding: 8rem 4rem;
 }
+.mdl-cartlist .m-empty {
+  display: none;
+  font-family: "Manrope", sans-serif;
+  font-size: 3.2rem;
+  line-height: 3.7rem;
+  font-weight: 600;
+  color: #2A3D65;
+}
+@media (max-width: 850px) {
+  .mdl-cartlist .m-empty {
+    font-size: 2.2rem;
+    line-height: 2.5rem;
+  }
+}
+.mdl-cartlist .m-empty.show {
+  display: block;
+}
 .mdl-cartlist .m-grid {
   max-width: 60rem;
   width: 100%;

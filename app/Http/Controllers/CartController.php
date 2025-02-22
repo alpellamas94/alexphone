@@ -45,19 +45,43 @@ class CartController extends Controller
 
         // Verificamos si el producto existe en el cart
         if (array_key_exists($sku, $cart)) {
-            // Si la cantidad es mayor a 1, disminuimos la cantidad
-            if ($cart[$sku] > 1) {
-                $cart[$sku]--;
-            } else {
-                // Si la cantidad es 1, eliminamos el producto del cart
-                unset($cart[$sku]);
-            }
+            // Eliminamos el producto del cart
+            unset($cart[$sku]);
 
             // Guardamos el cart actualizado en la sesión
             session()->put('cart', $cart);
 
             return response()->json([
-                'mensaje' => 'El producto ha sido removido del carrito exitosamente.',
+                'mensaje' => 'El producto ha sido eliminado del carrito.',
+                'cart' => $cart
+            ]);
+        } else {
+            return response()->json([
+                'mensaje' => 'El producto no existe en el carrito.',
+                'cart' => $cart
+            ], 404);
+        }
+    }
+
+    public function updateQuantity(Request $request)
+    {
+        // Obtenemos el Sku del producto y la nueva cantidad
+        $sku = $request->input('sku');
+        $quantity = $request->input('quantity');
+
+        // Recuperamos el cart de la sesión
+        $cart = session()->get('cart', []);
+
+        // Verificamos si el producto existe en el cart
+        if (array_key_exists($sku, $cart)) {
+            // Actualizamos la cantidad del producto
+            $cart[$sku] = $quantity;
+
+            // Guardamos el cart actualizado en la sesión
+            session()->put('cart', $cart);
+
+            return response()->json([
+                'mensaje' => 'La cantidad del producto ha sido actualizada exitosamente.',
                 'cart' => $cart
             ]);
         } else {

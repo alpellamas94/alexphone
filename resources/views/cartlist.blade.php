@@ -9,7 +9,8 @@
 @endsection
 
 @section('content')
-    <div class="mdl-cartlist">
+    <div class="mdl-cartlist" data-update="{{ route('cart.update.quantity') }}" data-delete="{{ route('cart.remove') }}" data-token="{{ csrf_token() }}">
+        @if ($cart)
         <div class="m-grid">
             @foreach ($cart as $element)
                 <div class="m-element" data-sku="{{$element->sku}}">
@@ -54,6 +55,11 @@
             <button id="m-pay" class="m-button full" {{-- data-url="{{ route('cart.add') }}" data-token="{{ csrf_token() }}" --}}>
                 <span>Realizar pedido</span>
             </button>
+        </div>
+        @endif
+
+        <div class="m-empty @if (!$cart) show @endif">
+            Todavía no has seleccionado ningún producto.
         </div>
     </div>
 @endsection
