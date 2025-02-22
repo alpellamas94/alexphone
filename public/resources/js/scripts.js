@@ -131,10 +131,6 @@ $(function () {
             var url = $(this).data("url");
             var token = $(this).data("token");
 
-            console.log(sku);
-            console.log(url);
-            console.log(token);
-
             $.ajax({
                 url: url,
                 type: "POST",
@@ -153,9 +149,7 @@ $(function () {
 
                     reloadNavbarCart();
                 },
-                error: function(response) {
-                    console.log(response);
-
+                error: function() {
                     $("#message-cart").html("No se pudo añadir el producto al carrito.")
                         .removeClass("success")
                         .addClass("error active");

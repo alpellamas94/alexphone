@@ -14,7 +14,7 @@ Route::get('/product/{sku}', [FrontController::class,'product'])->name('product.
 Route::get('/cart-list', [FrontController::class,'cartlist'])->name('cart.list');
 
 // Añadir al cart elemento
-Route::post('/add-cart', [CartController::class, 'add'])->name('cart.add');
+Route::post('/add-cart', [CartController::class, 'addcart'])->name('cart.add');
 
 // Actualizar la cantidad de un elemento de carrito
 Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');
