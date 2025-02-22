@@ -22,9 +22,6 @@ $(function () {
             },
             animation: {
                 duration: 300
-            },
-            load: {
-                sort: "default"
             }
         });
     
