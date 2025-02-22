@@ -95,7 +95,6 @@ $(function () {
     
         function toggleResetVisibility() {
             let hasFilters = $nameFilter.val() || $gradeFilter.val() || $colorFilter.val() || $storageFilter.val() || $sortFilter.val();
-            console.log(hasFilters);
             $("#reset-filter").toggleClass("active", !!hasFilters);
         }
     
@@ -251,10 +250,12 @@ $(function () {
         function checkVoidCart() {
             const cartList = $('.mdl-cartlist');
             const cartElements = cartList.find('.m-element');
+            const gridElements = cartList.find('.m-grid');
             const totalElement = cartList.find('#m-total');
             const emptyElement = cartList.find('.m-empty');
         
             if (cartElements.length === 0) {
+                gridElements.hide();
                 totalElement.hide();
                 emptyElement.show();
             }
@@ -270,13 +271,11 @@ $(function () {
                     quantity: quantity,
                 },
                 success: function(response) {
-                    console.log(response);
-        
                     reloadNavbarCart();
                     reloadPrice();
                 },
                 error: function() {
-                    
+                    console.log(response);
                 }
             });
         }
@@ -308,6 +307,6 @@ function reloadNavbarCart(){
     if($("#m-cart").length > 0){
         setTimeout(() => {
             $("#m-cart").load(window.location.href + " #m-cart > *");
-        }, 300);
+        }, 500);
     }
 }
