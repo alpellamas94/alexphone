@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\phoneController;
+use App\Http\Controllers\PhoneController;
 
 class CartController extends Controller
 {
-    protected $phoneController;
-
     public function __construct(PhoneController $phoneController)
     {
         $this->phoneController = $phoneController;
