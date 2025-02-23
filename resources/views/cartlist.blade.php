@@ -52,7 +52,7 @@
                 <span>Importe total:</span><strong> {{ number_format($totalPrice, 0) }}€</strong>
             </div>
             
-            <button id="m-pay" class="m-button full" data-url="{{ route('cart.pay') }}" onclick="payCart(this);">
+            <button id="m-pay" class="m-button full check-disabled" data-url="{{ route('cart.pay') }}" onclick="payCart(this);">
                 <span>Realizar pedido</span>
                 <img src="{{ asset('resources/icons/cart.svg') }}" alt="buy-cart">
             </button>

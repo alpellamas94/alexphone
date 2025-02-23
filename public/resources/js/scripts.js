@@ -22,6 +22,15 @@ $(function () {
             },
             animation: {
                 duration: 300
+            },
+            callbacks: {
+                onMixEnd: function(state) {
+                    if (state.totalShow === 0) {
+                        $('#no-results-message').show();
+                    } else {
+                        $('#no-results-message').hide();
+                    }
+                }
             }
         });
     
@@ -37,6 +46,7 @@ $(function () {
             let color = $colorFilter.val() || "";
             let storage = $storageFilter.val() || "";
             let sort = $sortFilter.val() || "";
+            $('#no-results-message').hide();
     
             let filters = [];
             if (name) filters.push(name);
@@ -77,17 +87,17 @@ $(function () {
             let color = urlParams.get("color");
             let storage = urlParams.get("storage");
             let sort = urlParams.get("sort");
-    
-            if (name) $nameFilter.val(`.${name}`).trigger("change");
-            if (grade) $gradeFilter.val(`.${grade}`).trigger("change");
-            if (color) $colorFilter.val(`.${color}`).trigger("change");
-            if (storage) $storageFilter.val(`.${storage}`).trigger("change");
-            if (sort) {
-                $sortFilter.val(sort);
-                mixer.sort(sort);
-            }
-    
-            updateFilters();
+        
+            if (name) $nameFilter.val(`.${name}`);
+            if (grade) $gradeFilter.val(`.${grade}`);
+            if (color) $colorFilter.val(`.${color}`);
+            if (storage) $storageFilter.val(`.${storage}`);
+            if (sort) $sortFilter.val(sort);
+        
+            setTimeout(() => {
+                updateFilters();
+                if (sort) mixer.sort(sort);
+            }, 300);
         }
     
         function toggleResetVisibility() {
@@ -108,11 +118,11 @@ $(function () {
         $sortFilter.on("change", handleFilterChange);
     
         $("#reset-filter").on("click", function () {
-            $nameFilter.val("").trigger("change");
-            $gradeFilter.val("").trigger("change");
-            $colorFilter.val("").trigger("change");
-            $storageFilter.val("").trigger("change");
-            $sortFilter.val("").trigger("change");
+            $nameFilter.val("");
+            $gradeFilter.val("");
+            $colorFilter.val("");
+            $storageFilter.val("");
+            $sortFilter.val("");
             updateFilters();
             updateSorting();
             toggleResetVisibility();
@@ -259,7 +269,7 @@ $(function () {
             }
         }
         
-        function checkVoidCart() {
+        function checkEmptyCart() {
             const cartList = $('.mdl-cartlist');
             const cartElements = cartList.find('.m-element');
             const gridElements = cartList.find('.m-grid');
@@ -312,7 +322,7 @@ $(function () {
         
                     reloadNavbarCart();
                     reloadPrice();
-                    checkVoidCart();
+                    checkEmptyCart();
                 },
                 error: function() {
                     console.error("Error al eliminar el producto del carrito.");

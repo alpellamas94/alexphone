@@ -294,7 +294,7 @@ body {
   flex-direction: row;
   align-items: center;
   gap: 0.5rem 1rem;
-  margin: 6rem 0;
+  margin: 3rem 0;
 }
 .mdl-listado .m-content .m-filters .m-select {
   position: relative;
@@ -386,8 +386,22 @@ body {
   display: flex;
 }
 .mdl-listado .m-content .m-filters .m-reset img {
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+.mdl-listado .m-content #no-results-message {
+  display: none;
+  font-family: "Manrope", sans-serif;
+  font-size: 3.2rem;
+  line-height: 3.7rem;
+  font-weight: 600;
+  color: #2A3D65;
+}
+@media (max-width: 850px) {
+  .mdl-listado .m-content #no-results-message {
+    font-size: 2.2rem;
+    line-height: 2.5rem;
+  }
 }
 .mdl-listado .m-content .m-grid {
   width: 100%;
@@ -397,6 +411,7 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 4rem 3rem;
+  margin-top: 2rem;
 }
 .mdl-listado .m-content .m-grid .m-item {
   max-width: calc((100% / 3) - 2rem);
@@ -556,7 +571,7 @@ body {
   }
   .mdl-listado .m-content .m-filters .m-reset {
     width: 100%;
-    padding-right: 1.5rem;
+    padding-right: 1.65rem;
   }
   .mdl-listado .m-content .m-grid {
     gap: 3rem 2rem;

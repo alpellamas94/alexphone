@@ -25,7 +25,7 @@
 
     @if (isset($elements) && !is_null($elements))
         <div class="mdl-listado">
-            <div class="m-title">Listado de iPhones disponibles</div>
+            <div class="m-title">Listado de iPhones en venta</div>
     
             <div class="m-content">
                 <div class="m-filters">
@@ -79,34 +79,37 @@
                         <img src="{{ asset('resources/icons/close.svg') }}" alt="Close">
                     </button>
                 </div>
-    
+                
+                <div id="no-results-message">No se han encontrado resultados.</div>
+
                 <div id="grid-elements" class="m-grid">
-                @foreach ($elements as $key => $item)
-                    <a href="{{ route('product.detail', ['sku' => $item->sku]) }}" data-price="{{ $item->price }}" class="m-item mix {{ Str::slug($item->name) }} {{ $item->color }} {{ $item->grade }} storage-{{ $item->storage }}">
-                        <div class="m-img" style="background-image: url('{{$item->image}}');"></div>
-                        <div class="m-info">
-                            <div class="m-title">{{$item->name}}</div>
-                            <div class="m-desc">{{$item->description}}</div>
-                            <div class="m-features m-row">
-                                <div class="m-grade">
-                                    <span>{{config('grades.' . $item->grade)}}</span>
-                                </div>
 
-                                <div class="m-storage">
-                                    <span>{{$item->storage}} GB</span>
-                                </div>
+                    @foreach ($elements as $key => $item)
+                        <a href="{{ route('product.detail', ['sku' => $item->sku]) }}" data-price="{{ $item->price }}" class="m-item mix {{ Str::slug($item->name) }} {{ $item->color }} {{ $item->grade }} storage-{{ $item->storage }}">
+                            <div class="m-img" style="background-image: url('{{$item->image}}');"></div>
+                            <div class="m-info">
+                                <div class="m-title">{{$item->name}}</div>
+                                <div class="m-desc">{{$item->description}}</div>
+                                <div class="m-features m-row">
+                                    <div class="m-grade">
+                                        <span>{{config('grades.' . $item->grade)}}</span>
+                                    </div>
 
-                                <div class="m-colors">
-                                    <span class="m-color {{$item->color}}" style="background-color: {{$item->color}};">{{config('colors.' . $item->color)}}</span>
-                                </div> 
+                                    <div class="m-storage">
+                                        <span>{{$item->storage}} GB</span>
+                                    </div>
+
+                                    <div class="m-colors">
+                                        <span class="m-color {{$item->color}}" style="background-color: {{$item->color}};">{{config('colors.' . $item->color)}}</span>
+                                    </div> 
+                                </div>
+                                <div class="m-price">
+                                    <span>Precio:</span>
+                                    <strong>{{ number_format($item->price, 0) }}€</strong>
+                                </div>
                             </div>
-                            <div class="m-price">
-                                <span>Precio:</span>
-                                <strong>{{ number_format($item->price, 0) }}€</strong>
-                            </div>
-                        </div>
-                    </a>
-                @endforeach
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>    

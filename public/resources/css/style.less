@@ -244,7 +244,7 @@ body{
             flex-direction: row;
             align-items: center;
             gap: 0.5rem 1rem;
-            margin: 6rem 0;
+            margin: 3rem 0;
 
             
             .m-select{
@@ -312,10 +312,16 @@ body{
                 }
                 
                 img{
-                    width: 1.8rem;
-                    height: 1.8rem;
+                    width: 1.6rem;
+                    height: 1.6rem;
                 }
             }
+        }
+
+        #no-results-message{
+            display: none;
+            .m-title4();
+            color: @color-blue;
         }
         
         .m-grid{
@@ -326,6 +332,7 @@ body{
             flex-direction: row;
             flex-wrap: wrap;
             gap: 4rem 3rem;
+            margin-top: 2rem;
     
             .m-item{    
                 max-width: ~"calc((100% / 3) - 2rem)";
@@ -453,7 +460,7 @@ body{
     
                 .m-reset{
                     width: 100%;
-                    padding-right: 1.5rem;
+                    padding-right: 1.65rem;
                 }
             }
 
