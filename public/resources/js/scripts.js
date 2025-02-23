@@ -157,7 +157,7 @@ $(function () {
                     
                     setTimeout(() => {
                         $("#message-cart").removeClass("active");
-                    }, 2000);
+                    }, 1000);
 
                     reloadNavbarCart();
                 },
@@ -168,7 +168,7 @@ $(function () {
                     
                     setTimeout(() => {
                         $("#message-cart").removeClass("active");
-                    }, 2000);
+                    }, 1000);
                 },
                 complete: function() {
                     toggleDisabledButtons();
@@ -269,7 +269,7 @@ $(function () {
         function reloadPrice(){
             if($("#m-total").length > 0){
                 setTimeout(() => {
-                    $("#m-total").load(window.location.href + " #m-total > *");
+                    $("#m-total .m-info").load(window.location.href + " #m-total .m-info > *");
                 }, 300);
             }
         }
@@ -356,7 +356,7 @@ function toggleDisabledButtons(disabled = false) {
     } else {
         setTimeout(() => {
             $('.check-disabled').removeClass('disabled').off('click.preventDefault');
-        }, 500);
+        }, 1000);
     }
 }
 
