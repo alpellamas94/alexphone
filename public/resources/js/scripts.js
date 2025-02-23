@@ -136,6 +136,13 @@ $(function () {
         Fancybox.bind("[data-fancybox]", {});
 
         $("#m-add").click(function() {
+
+            // Detiene la ejecución aquí si el botón está deshabilitado
+            if ($(this).hasClass('disabled')) {
+                e.preventDefault();
+                return;
+            }
+
             $("#message-cart").html();
             var sku = $(this).data("sku");
             var url = $(this).data("url");
@@ -211,7 +218,7 @@ $(function () {
         
             valorActual++;
         
-            if (valorActual <= 10) {
+            if (valorActual <= 100) {
                 $(input).val(valorActual);
             }
         
@@ -246,15 +253,15 @@ $(function () {
             let moreButton = input.siblings('.m-more');
         
             if (value <= 1) {
-                lessButton.addClass('disabled');
+                lessButton.addClass('disabled-limit');
             } else {
-                lessButton.removeClass('disabled');
+                lessButton.removeClass('disabled-limit');
             }
             
             if (value >= 100) {
-                moreButton.addClass('disabled');
+                moreButton.addClass('disabled-limit');
             } else {
-                moreButton.removeClass('disabled');
+                moreButton.removeClass('disabled-limit');
             }
 
             // Llamada a updateQuantity() con los parámetros necesarios

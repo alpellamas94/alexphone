@@ -134,7 +134,8 @@ body {
   width: 2.4rem;
   filter: brightness(0) invert(1);
 }
-.check-disabled.disabled {
+.check-disabled.disabled,
+.disabled-limit {
   opacity: 0.4;
   cursor: not-allowed !important;
 }
