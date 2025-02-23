@@ -93,13 +93,16 @@ $(function () {
             if (color) $colorFilter.val(`.${color}`);
             if (storage) $storageFilter.val(`.${storage}`);
             if (sort) $sortFilter.val(sort);
-        
-            setTimeout(() => {
-                updateFilters();
-                if (sort) mixer.sort(sort);
+
+            if (name || grade || color || storage || sort) {
                 $('html, body').animate({
                     scrollTop: $('.mdl-listado').offset().top - 80
                 }, 1200);
+            }
+            
+            setTimeout(() => {
+            updateFilters();
+            if (sort) mixer.sort(sort);
             }, 300);
         }
     

@@ -263,6 +263,12 @@ body {
 @media (max-width: 850px) {
   .mdl-hero {
     min-height: 30rem;
+    padding: 6rem 2rem;
+  }
+}
+@media (max-width: 551px) {
+  .mdl-hero {
+    min-height: 25rem;
   }
 }
 .mdl-listado {
