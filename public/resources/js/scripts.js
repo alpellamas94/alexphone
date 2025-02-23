@@ -140,6 +140,8 @@ $(function () {
             var sku = $(this).data("sku");
             var url = $(this).data("url");
             var token = $(this).data("token");
+            
+            toggleDisabledButtons(true);
 
             $.ajax({
                 url: url,
@@ -168,6 +170,9 @@ $(function () {
                         $("#message-cart").removeClass("active");
                     }, 2000);
                 },
+                complete: function() {
+                    toggleDisabledButtons();
+                }
             });
         });
     }
@@ -246,14 +251,14 @@ $(function () {
                 lessButton.removeClass('disabled');
             }
             
-            if (value >= 10) {
+            if (value >= 100) {
                 moreButton.addClass('disabled');
             } else {
                 moreButton.removeClass('disabled');
             }
 
             // Llamada a updateQuantity() con los parámetros necesarios
-            if (!init && value >= 1 && value <= 10) {
+            if (!init && value >= 1 && value <= 100) {
                 let sku = input.closest('.m-element').data('sku');
                 let urlupdate = input.closest('.mdl-cartlist').data('update');
                 let token = input.closest('.mdl-cartlist').data('token');
@@ -343,7 +348,7 @@ function reloadNavbarCart(){
     }
 }
 
-function toggleDisabledButtons(disabled) {
+function toggleDisabledButtons(disabled = false) {
     if (disabled) {
         $('.check-disabled').addClass('disabled').on('click.preventDefault', function(e) {
             e.preventDefault();
@@ -351,7 +356,7 @@ function toggleDisabledButtons(disabled) {
     } else {
         setTimeout(() => {
             $('.check-disabled').removeClass('disabled').off('click.preventDefault');
-        }, 1000);
+        }, 500);
     }
 }
 

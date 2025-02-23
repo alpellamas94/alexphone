@@ -14,7 +14,7 @@
         <div class="m-grid">
             @foreach ($cart as $element)
                 <div class="m-element" data-sku="{{$element->sku}}">
-                    <div class="m-section">
+                    <a class="m-section" href="{{ route('product.detail', ['sku' => $element->sku]) }}" target="_blank">
                         <div class="m-img">
                             <img src="{{$element->image}}" alt="{{$element->sku}}">
                         </div>
@@ -26,7 +26,7 @@
 
                             <div class="m-price"><span>Precio por unidad</span> {{number_format($element->price, 0) }}€ </div>
                         </div>
-                    </div>
+                    </a>
                     <div class="m-controls">
                         <div class="m-remove check-disabled">
                             <img src="{{ asset('resources/icons/remove.svg') }}" alt="less">

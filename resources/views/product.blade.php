@@ -42,7 +42,7 @@
                 <span>{{number_format($element->price, 0) }}€</span>
             </div>
 
-            <button id="m-add" class="m-button" data-sku="{{$element->sku}}" data-url="{{ route('cart.add') }}" data-token="{{ csrf_token() }}">
+            <button id="m-add" class="m-button check-disabled" data-sku="{{$element->sku}}" data-url="{{ route('cart.add') }}" data-token="{{ csrf_token() }}">
                 <span>Añadir al carrito</span>
                 <img src="{{ asset('resources/icons/plus.svg') }}" alt="add-cart">
             </button>
