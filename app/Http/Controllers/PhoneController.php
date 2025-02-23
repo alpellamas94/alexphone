@@ -9,7 +9,7 @@ class PhoneController extends Controller
 {
     public function getAll(){
         // Pedimos los datos
-        $response = Http::get('https://test.alexphone.com/api/v1/skus');
+        $response = Http::withoutVerifying()->get('https://test.alexphone.com/api/v1/skus');
 
         // Verificamos si la respuesta fue exitosa
         if ($response->successful()) {
@@ -25,7 +25,7 @@ class PhoneController extends Controller
 
     public function getBySku($sku){
         // Pedimos los datos del producto
-        $response = Http::get('https://test.alexphone.com/api/v1/sku/'.$sku);
+        $response = Http::withoutVerifying()->get('https://test.alexphone.com/api/v1/sku/'.$sku);
 
         // Verificamos si la respuesta fue exitosa
         if ($response->successful()) {
