@@ -97,6 +97,9 @@ $(function () {
             setTimeout(() => {
                 updateFilters();
                 if (sort) mixer.sort(sort);
+                $('html, body').animate({
+                    scrollTop: $('.mdl-listado').offset().top - 80
+                }, 1200);
             }, 300);
         }
     
@@ -157,7 +160,7 @@ $(function () {
                     _token: token,
                     sku: sku
                 },
-                success: function(response) {
+                success: function() {
                     $("#message-cart").html('El producto ha sido añadido al carrito.')
                         .removeClass("error")
                         .addClass("success active");
